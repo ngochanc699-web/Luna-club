@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>The Luna Club - Dịch Vụ Discord & Code Web</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,600&family=Montserrat:wght@400;600;700;800&family=Great+Vibes&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0a0a0a; --panel:#141414;
+    --gold:#d4af37; --gold-light:#ffdf73;
+    --text:#f0f0f0; --muted:#999;
+    --border:rgba(212,175,55,0.15);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;font-family:'Montserrat',sans-serif}
+  html{scroll-behavior:smooth}
+  body{
+    background-color:var(--bg);
+    background-image:repeating-linear-gradient(90deg,#111 0px,#111 8px,#0a0a0a 8px,#0a0a0a 16px);
+    color:var(--text);min-height:100vh;
+  }
+  a{text-decoration:none;color:inherit}
+
+  /* ═══ NAV ═══ */
+  nav{
+    position:sticky;top:0;z-index:100;
+    display:flex;justify-content:space-between;align-items:center;
+    padding:16px 6%;backdrop-filter:blur(15px);
+    background:rgba(10,10,10,0.92);border-bottom:1px solid var(--border);
+  }
+  .logo{display:flex;flex-direction:column;align-items:center;line-height:1;text-shadow:0 0 10px rgba(212,175,55,0.4);cursor:pointer;}
+  .logo .the{font-family:'Great Vibes',cursive;color:var(--gold);font-size:18px;margin-bottom:-5px;margin-right:20px;}
+  .logo .luna{font-family:'Playfair Display',serif;font-style:italic;font-size:32px;font-weight:600;color:var(--gold-light);letter-spacing:2px;}
+  .logo .club{font-family:'Montserrat',sans-serif;font-size:10px;letter-spacing:6px;color:var(--gold);margin-top:2px;margin-left:5px;}
+  .nav-links{display:flex;gap:4px;list-style:none}
+  .nav-links a{color:var(--muted);font-size:13px;font-weight:600;transition:.2s;text-transform:uppercase;letter-spacing:1px;padding:10px 14px;border-radius:6px;display:block;cursor:pointer;}
+  .nav-links a:hover, .nav-links a.active{color:var(--gold);background:rgba(212,175,55,.08)}
+  .nav-actions{display:flex;align-items:center;gap:12px}
+  .hamburger{display:none;background:transparent;border:1px solid var(--border);color:var(--gold);width:44px;height:44px;border-radius:6px;cursor:pointer;font-size:22px;transition:.2s;}
+  .hamburger:hover{background:rgba(212,175,55,.1);border-color:var(--gold)}
+
+  /* ═══ MOBILE MENU — DRAWER GỌN ═══ */
+  .mobile-menu{
+    position:fixed;inset:0;background:rgba(0,0,0,0.65);
+    z-index:200;display:none;backdrop-filter:blur(6px);
+  }
+  .mobile-menu.active{display:block}
+  .mobile-panel{
+    position:absolute;top:0;right:0;bottom:0;
+    width:85%;max-width:320px;
+    background:linear-gradient(180deg,#0f0f0f,#050505);
+    border-left:1px solid var(--gold);
+    padding:70px 24px 24px;
+    transform:translateX(100%);transition:transform .35s cubic-bezier(.4,0,.2,1);
+    overflow-y:auto;box-shadow:-20px 0 60px rgba(0,0,0,0.8);
+  }
+  .mobile-menu.active .mobile-panel{transform:translateX(0)}
+  .mobile-close{
+    position:absolute;top:18px;right:18px;
+    width:40px;height:40px;background:rgba(212,175,55,.1);
+    border:1px solid var(--border);border-radius:50%;
+    color:var(--gold);font-size:20px;cursor:pointer;
+    display:grid;place-items:center;transition:.2s;
+  }
+  .mobile-close:hover{background:var(--gold);color:#000;transform:rotate(90deg)}
+  .mobile-links{display:flex;flex-direction:column;gap:4px;list-style:none;}
+  .mobile-links li{margin:0}
+  .mobile-links a{
+    color:var(--text);font-size:15px;font-weight:600;
+    padding:14px 18px;border-radius:8px;cursor:pointer;
+    border-left:3px solid transparent;transition:.2s;
+    display:flex;align-items:center;gap:14px;
+    letter-spacing:.5px;
+  }
+  .mobile-links a:hover, .mobile-links a.active{
+    color:var(--gold);background:rgba(212,175,55,.08);
+    border-left-color:var(--gold);padding-left:24px;
+  }
+  .mobile-links a i{font-style:normal;font-size:20px;width:26px;text-align:center;}
+  .mobile-divider{height:1px;background:var(--border);margin:16px 8px}
+  .mobile-cta{display:block;margin-top:20px;text-align:center;padding:14px;background:linear-gradient(135deg,var(--gold),#b8860b);color:#000;border-radius:6px;font-weight:800;font-size:13px;letter-spacing:1px;text-transform:uppercase;}
+
+  /* ═══ BUTTONS ═══ */
+  .btn{display:inline-block;padding:12px 24px;border-radius:4px;font-weight:700;font-size:14px;transition:.25s;cursor:pointer;border:none;text-transform:uppercase;letter-spacing:1px;}
+  .btn-primary{background:linear-gradient(135deg,var(--gold),#b8860b);color:#000;box-shadow:0 4px 15px rgba(212,175,55,.3);}
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 25px rgba(212,175,55,.5)}
+  .btn-ghost{background:transparent;border:1px solid var(--gold);color:var(--gold)}
+  .btn-ghost:hover{background:rgba(212,175,55,.1)}
+  .btn-sm{padding:9px 18px;font-size:12px}
+
+  /* ═══ PAGES ═══ */
+  .page{display:none;animation:fadeIn .4s ease;}
+  .page.active{display:block}
+  @keyframes fadeIn{from{opacity:0;transform:translateY(15px)}to{opacity:1;transform:translateY(0)}}
+
+  /* ═══ HERO ═══ */
+  .hero{padding:100px 6% 80px;text-align:center}
+  .hero h1{font-size:clamp(32px,5vw,56px);font-weight:800;line-height:1.2;max-width:900px;margin:0 auto 20px;color:#fff}
+  .hero h1 span{background:linear-gradient(135deg,var(--gold-light),var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent;}
+  .hero p{color:var(--muted);font-size:16px;max-width:640px;margin:0 auto 40px;line-height:1.8}
+  .hero-actions{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+  .badge{display:inline-block;padding:8px 18px;border-radius:2px;background:rgba(212,175,55,.1);border:1px solid var(--border);color:var(--gold-light);font-size:12px;font-weight:600;letter-spacing:2px;text-transform:uppercase;margin-bottom:28px;}
+  .stats{display:flex;justify-content:center;gap:60px;margin-top:70px;flex-wrap:wrap}
+  .stat h3{font-size:36px;color:var(--gold-light);font-weight:800;font-family:'Playfair Display',serif}
+  .stat p{color:var(--muted);font-size:12px;margin-top:6px;text-transform:uppercase;letter-spacing:1px}
+
+  /* ═══ SECTIONS ═══ */
+  section{padding:60px 6%}
+  .section-head{text-align:center;margin-bottom:56px}
+  .section-head h2{font-size:clamp(26px,4vw,38px);font-weight:700;margin-bottom:14px;font-family:'Playfair Display',serif;color:var(--gold-light)}
+  .section-head p{color:var(--muted);font-size:15px;letter-spacing:1px}
+
+  /* ═══ CARDS ═══ */
+  .grid{display:grid;gap:26px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));max-width:1300px;margin:0 auto;}
+  .card{background:linear-gradient(180deg,#1a1a1a 0%,#0f0f0f 100%);border:1px solid var(--border);border-radius:8px;padding:36px 28px;position:relative;transition:.3s;}
+  .card:hover{transform:translateY(-8px);border-color:var(--gold);box-shadow:0 15px 40px rgba(212,175,55,.15)}
+  .card .icon{width:50px;height:50px;border-radius:4px;display:grid;place-items:center;font-size:24px;margin-bottom:24px;background:rgba(212,175,55,.1);color:var(--gold);border:1px solid var(--border);}
+  .card.featured{border-color:var(--gold);background:linear-gradient(180deg,#221e12 0%,#0f0f0f 100%);}
+  .card.featured .icon{background:var(--gold);color:#000;}
+  .card h3{font-size:20px;font-weight:700;margin-bottom:10px;color:#fff}
+  .card .desc{color:var(--muted);font-size:13px;line-height:1.6;margin-bottom:24px}
+  .price{font-size:26px;font-weight:800;margin-bottom:6px;color:var(--gold-light);font-family:'Playfair Display',serif;}
+  .price small{font-size:12px;color:var(--muted);font-weight:600;font-family:'Montserrat',sans-serif}
+  .features{list-style:none;margin:24px 0 30px;display:flex;flex-direction:column;gap:12px}
+  .features li{display:flex;gap:10px;align-items:flex-start;font-size:13px;color:#ccc}
+  .features li::before{content:"✦";color:var(--gold);font-weight:800;flex-shrink:0}
+  .card .btn{width:100%;text-align:center;display:block;font-size:13px;padding:14px}
+  .tag{position:absolute;top:20px;right:20px;padding:6px 12px;border-radius:2px;background:var(--gold);color:#000;font-size:10px;font-weight:800;letter-spacing:1px;}
+  .tag.new{background:linear-gradient(135deg,#22c55e,#16a34a);color:#fff;}
+
+  /* ═══ ĐỐI TÁC ═══ */
+  .partners-grid{
+    display:grid;gap:24px;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    max-width:1100px;margin:0 auto;
+  }
+  .partner-card{
+    background:linear-gradient(180deg,#1a1a1a 0%,#0f0f0f 100%);
+    border:1px solid var(--border);border-radius:12px;
+    padding:32px 20px;text-align:center;position:relative;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    transition:.3s;min-height:200px;text-decoration:none;color:inherit;
+  }
+  .partner-card[href]{cursor:pointer}
+  .partner-card[href]:hover{
+    transform:translateY(-10px) scale(1.02);
+    border-color:var(--gold);
+    box-shadow:0 20px 50px rgba(212,175,55,.3);
+    background:linear-gradient(180deg,#221e12 0%,#0f0f0f 100%);
+  }
+  .partner-card[href]::after{
+    content:"🔗";position:absolute;top:14px;right:14px;
+    font-size:14px;opacity:0;transition:.3s;
+  }
+  .partner-card[href]:hover::after{opacity:1}
+  .partner-avatar{
+    width:90px;height:90px;border-radius:50%;
+    background:linear-gradient(135deg,var(--gold),#b8860b);
+    display:grid;place-items:center;font-size:42px;
+    margin-bottom:18px;border:3px solid rgba(212,175,55,.3);
+    box-shadow:0 0 30px rgba(212,175,55,.3);
+    transition:.3s;overflow:hidden;color:#000;
+  }
+  .partner-avatar img{width:100%;height:100%;object-fit:cover;border-radius:50%}
+  .partner-card[href]:hover .partner-avatar{
+    transform:scale(1.12) rotate(-6deg);
+    box-shadow:0 0 60px rgba(212,175,55,.7);
+  }
+  .partner-name{
+    font-family:'Playfair Display',serif;font-size:20px;
+    color:var(--gold-light);font-weight:600;margin-bottom:10px;
+  }
+  .partner-visit{
+    color:var(--gold);font-size:10px;letter-spacing:2px;
+    text-transform:uppercase;font-weight:700;opacity:.6;
+    transition:.3s;
+  }
+  .partner-card[href]:hover .partner-visit{opacity:1;color:var(--gold-light)}
+  .partners-empty{text-align:center;color:var(--muted);padding:60px 20px;font-size:14px;}
+
+  /* ═══ TRADE BANNER ═══ */
+  .trade-banner{max-width:1000px;margin:0 auto;background:linear-gradient(90deg,rgba(212,175,55,.1) 0%,transparent 100%);border-left:4px solid var(--gold);border-radius:4px;padding:32px 40px;display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap;}
+  .trade-banner .text h3{font-size:20px;font-weight:700;margin-bottom:8px;color:var(--gold-light);font-family:'Playfair Display',serif}
+  .trade-banner .text p{color:var(--muted);font-size:14px}
+  .trade-banner .btn{flex-shrink:0}
+
+  /* ═══ STEPS ═══ */
+  .steps-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px;max-width:1100px;margin:0 auto;}
+  .step-card{background:#111;border:1px solid var(--border);border-radius:8px;padding:30px 24px;text-align:center;position:relative;transition:.3s;}
+  .step-card:hover{border-color:var(--gold);transform:translateY(-5px);}
+  .step-num{position:absolute;top:-15px;left:50%;transform:translateX(-50%);width:32px;height:32px;background:var(--gold);color:#000;border-radius:50%;display:grid;place-items:center;font-weight:800;font-size:16px;}
+  .step-icon{font-size:36px;margin-bottom:16px;margin-top:10px;}
+  .step-card h4{color:var(--gold-light);font-size:16px;margin-bottom:10px;font-family:'Playfair Display',serif;}
+  .step-card p{color:var(--muted);font-size:13px;line-height:1.6;}
+
+  /* ═══ CONTACT ═══ */
+  .contact-box{max-width:700px;margin:0 auto;background:linear-gradient(180deg,#1a1a1a 0%,#0f0f0f 100%);border:1px solid var(--border);border-radius:8px;padding:50px 36px;text-align:center;}
+  .contact-box h2{font-size:28px;margin-bottom:12px;font-weight:700;font-family:'Playfair Display',serif;color:var(--gold-light)}
+  .contact-box p{color:var(--muted);margin-bottom:32px;font-size:14px}
+  .contact-actions{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+
+  /* ═══ FOOTER ═══ */
+  footer{padding:40px 6%;text-align:center;color:var(--muted);font-size:12px;border-top:1px solid var(--border);letter-spacing:1px;margin-top:60px}
+
+  /* ═══ FLOAT ═══ */
+  .float-discord{position:fixed;bottom:28px;right:28px;z-index:99;width:60px;height:60px;border-radius:50%;background:linear-gradient(135deg,var(--gold),#b8860b);display:grid;place-items:center;font-size:26px;color:#000;box-shadow:0 10px 30px rgba(212,175,55,.4);transition:.3s;animation:pulse 2s infinite;}
+  .float-discord:hover{transform:scale(1.1);animation:none}
+  @keyframes pulse{0%,100%{box-shadow:0 10px 30px rgba(212,175,55,.4)}50%{box-shadow:0 10px 40px rgba(255,223,115,.8)}}
+
+  /* ═══ RESPONSIVE ═══ */
+  @media(max-width:850px){
+    .nav-links{display:none}
+    .nav-actions .btn{display:none}
+    .hamburger{display:grid;place-items:center}
+    .stats{gap:32px}
+    section{padding:50px 5%}
+    .hero{padding:70px 5% 60px}
+    .float-discord{width:56px;height:56px;font-size:24px;bottom:20px;right:20px}
+    .trade-banner{padding:24px;text-align:center;justify-content:center;border-left:none;border-top:4px solid var(--gold)}
+    .contact-box{padding:32px 24px}
+  }
+
+  body{-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;}
+  input,textarea{-webkit-user-select:text;user-select:text;}
+
+  /* ═══ ADMIN ═══ */
+  .admin-btn{position:fixed;bottom:28px;left:28px;z-index:99;width:48px;height:48px;border-radius:50%;background:rgba(20,20,20,0.9);border:1px solid var(--gold);display:grid;place-items:center;font-size:20px;color:var(--gold);cursor:pointer;transition:.3s;backdrop-filter:blur(10px);}
+  .admin-btn:hover{transform:scale(1.1);box-shadow:0 0 20px rgba(212,175,55,.5)}
+  .admin-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:1000;display:none;align-items:center;justify-content:center;backdrop-filter:blur(8px);padding:20px;}
+  .admin-overlay.active{display:flex}
+  .admin-login{background:linear-gradient(180deg,#1a1a1a 0%,#0f0f0f 100%);border:1px solid var(--gold);border-radius:12px;padding:40px;max-width:400px;width:100%;box-shadow:0 20px 60px rgba(212,175,55,.2);}
+  .admin-login h2{color:var(--gold-light);text-align:center;margin-bottom:8px;font-family:'Playfair Display',serif;}
+  .admin-login p{color:var(--muted);text-align:center;font-size:13px;margin-bottom:24px;}
+  .admin-login input{width:100%;padding:14px 16px;background:rgba(255,255,255,0.05);border:1px solid var(--border);border-radius:6px;color:#fff;font-size:15px;outline:none;transition:.2s;}
+  .admin-login input:focus{border-color:var(--gold);background:rgba(212,175,55,0.05)}
+  .admin-login .btn{width:100%;margin-top:16px;padding:14px}
+  .admin-err{color:#f87171;font-size:13px;text-align:center;margin-top:10px;display:none}
+  .admin-panel{position:fixed;top:0;right:-500px;width:100%;max-width:500px;height:100vh;background:linear-gradient(180deg,#0f0f0f,#050505);border-left:1px solid var(--gold);z-index:1001;transition:right .4s;overflow-y:auto;box-shadow:-10px 0 40px rgba(0,0,0,0.8);}
+  .admin-panel.active{right:0}
+  .admin-header{position:sticky;top:0;background:rgba(15,15,15,0.95);backdrop-filter:blur(10px);padding:20px 24px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;z-index:10;}
+  .admin-header h3{color:var(--gold-light);font-family:'Playfair Display',serif;font-size:20px}
+  .admin-close{background:none;border:none;color:var(--muted);font-size:24px;cursor:pointer;padding:4px 8px;}
+  .admin-close:hover{color:var(--gold)}
+  .admin-body{padding:24px}
+  .admin-group{margin-bottom:24px;padding-bottom:20px;border-bottom:1px solid var(--border)}
+  .admin-group:last-child{border-bottom:none}
+  .admin-group h4{color:var(--gold);font-size:13px;letter-spacing:1px;text-transform:uppercase;margin-bottom:14px;}
+  .admin-field{margin-bottom:12px}
+  .admin-field label{display:block;color:#ccc;font-size:12px;margin-bottom:6px;font-weight:600}
+  .admin-field input,.admin-field textarea{width:100%;padding:10px 12px;background:rgba(255,255,255,0.04);border:1px solid var(--border);border-radius:6px;color:#fff;font-size:13px;font-family:inherit;outline:none;transition:.2s;}
+  .admin-field input:focus,.admin-field textarea:focus{border-color:var(--gold);background:rgba(212,175,55,0.05)}
+  .admin-field textarea{resize:vertical;min-height:70px}
+
+  /* Partner admin dynamic */
+  .admin-partner-box{background:rgba(212,175,55,.03);border:1px solid var(--border);border-radius:8px;padding:14px;margin-bottom:12px;position:relative;}
+  .partner-box-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;}
+  .partner-box-header h5{color:var(--gold-light);font-size:12px;font-family:'Playfair Display',serif;}
+  .partner-remove-btn{background:rgba(220,38,38,.15);border:1px solid rgba(220,38,38,.4);color:#f87171;width:28px;height:28px;border-radius:6px;cursor:pointer;font-size:14px;transition:.2s;display:grid;place-items:center;}
+  .partner-remove-btn:hover{background:#dc2626;color:#fff;}
+  .partner-actions{display:flex;gap:4px}
+  .partner-move-btn{background:rgba(212,175,55,.1);border:1px solid var(--border);color:var(--gold);width:28px;height:28px;border-radius:6px;cursor:pointer;font-size:12px;transition:.2s;display:grid;place-items:center;}
+  .partner-move-btn:hover{background:var(--gold);color:#000;}
+  .partner-move-btn:disabled{opacity:.3;cursor:not-allowed}
+  .add-partner-btn{width:100%;padding:14px;background:rgba(34,197,94,.1);border:1px dashed rgba(34,197,94,.5);color:#4ade80;border-radius:8px;font-weight:700;font-size:13px;cursor:pointer;transition:.2s;text-transform:uppercase;letter-spacing:1px;}
+  .add-partner-btn:hover{background:rgba(34,197,94,.2);border-color:#22c55e;}
+  .admin-hint{color:var(--gold);font-size:11px;margin-top:6px;padding:8px 10px;background:rgba(212,175,55,.08);border-radius:4px;border-left:2px solid var(--gold);margin-bottom:12px;}
+
+  .admin-actions{display:flex;flex-direction:column;gap:10px;margin-top:20px}
+  .admin-actions .btn{width:100%;text-align:center;padding:14px;font-size:13px}
+  .btn-danger{background:linear-gradient(135deg,#dc2626,#991b1b);color:#fff}
+  .btn-success{background:linear-gradient(135deg,#22c55e,#16a34a);color:#fff}
+  .admin-toast{position:fixed;bottom:30px;left:50%;transform:translateX(-50%) translateY(100px);background:rgba(34,197,94,0.95);color:#fff;padding:14px 28px;border-radius:8px;font-weight:600;font-size:14px;z-index:9999;transition:.3s;box-shadow:0 10px 30px rgba(34,197,94,.4);}
+  .admin-toast.show{transform:translateX(-50%) translateY(0)}
+</style>
+</head>
+<body>
+
+<div class="admin-btn" id="adminBtn" title="Admin Panel">⚙</div>
+<a class="float-discord" data-link href="https://discord.gg/tKm8J2jKkr" target="_blank" rel="noopener noreferrer">💬</a>
+
+<nav>
+  <div class="logo" onclick="showPage('home')">
+    <span class="the">The</span>
+    <span class="luna" data-edit="logoLuna">Luna</span>
+    <span class="club" data-edit="logoClub">CLUB</span>
+  </div>
+  <ul class="nav-links">
+    <li><a onclick="showPage('home')" data-page="home" class="active">Trang Chủ</a></li>
+    <li><a onclick="showPage('pricing')" data-page="pricing">Bảng Giá</a></li>
+    <li><a onclick="showPage('guide')" data-page="guide">Hướng Dẫn</a></li>
+    <li><a onclick="showPage('partners')" data-page="partners">Đối Tác</a></li>
+    <li><a onclick="showPage('contact')" data-page="contact">Liên Hệ</a></li>
+  </ul>
+  <div class="nav-actions">
+    <a class="btn btn-primary btn-sm" data-link href="https://discord.gg/tKm8J2jKkr" target="_blank" rel="noopener noreferrer">Vào Server</a>
+    <button class="hamburger" id="hamburgerBtn" aria-label="Menu">☰</button>
+  </div>
+</nav>
+
+<!-- MOBILE MENU — DRAWER GỌN -->
+<div class="mobile-menu" id="mobileMenu">
+  <div class="mobile-panel">
+    <button class="mobile-close" id="mobileClose">✕</button>
+    <ul class="mobile-links">
+      <li><a onclick="showPage('home'); closeMobile()" data-page="home" class="active"><i>🏠</i> Trang Chủ</a></li>
+      <li><a onclick="showPage('pricing'); closeMobile()" data-page="pricing"><i>💰</i> Bảng Giá</a></li>
+      <li><a onclick="showPage('guide'); closeMobile()" data-page="guide"><i>📖</i> Hướng Dẫn</a></li>
+      <li><a onclick="showPage('partners'); closeMobile()" data-page="partners"><i>🤝</i> Đối Tác</a></li>
+      <li><a onclick="showPage('contact'); closeMobile()" data-page="contact"><i>📞</i> Liên Hệ</a></li>
+    </ul>
+    <div class="mobile-divider"></div>
+    <a class="mobile-cta" data-link href="https://discord.gg/tKm8J2jKkr" target="_blank" rel="noopener noreferrer">💬 Vào Server Ngay</a>
+  </div>
+</div>
+
+<!-- TRANG CHỦ -->
+<div class="page active" id="page-home">
+  <header class="hero">
+    <span class="badge">The Luna Club · Uy tín · Đẳng cấp</span>
+    <h1 data-edit="heroTitle" data-html="true">Dịch vụ <span>Discord & Code Web</span> chuyên nghiệp</h1>
+    <p data-edit="heroDesc">Setup server, code bot, code web, quảng cáo và partner hộ — tất cả tại một nơi.</p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" onclick="showPage('pricing')">Xem bảng giá</a>
+      <a class="btn btn-ghost" data-link href="https://discord.gg/tKm8J2jKkr" target="_blank" rel="noopener noreferrer">💬 Nơi giao dịch</a>
+    </div>
+    <div class="stats">
+      <div class="stat"><h3 data-edit="stat1">500+</h3><p>Server đã setup</p></div>
+      <div class="stat"><h3 data-edit="stat2">200+</h3><p>Bot đã code</p></div>
+      <div class="stat"><h3 data-edit="stat3">150+</h3><p>Web đã hoàn thiện</p></div>
+    </div>
+  </header>
+
+  <section>
+    <div class="trade-banner">
+      <div class="text">
+        <h3>🛡️ Nơi giao dịch chính thức</h3>
+        <p>Mọi giao dịch diễn ra tại server Discord — an toàn, minh bạch, có bảo đảm.</p>
+      </div>
+      <a class="btn btn-primary" data-link href="https://discord.gg/tKm8J2jKkr" target="_blank" rel="noopener noreferrer">Tham gia ngay →</a>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-head"><h2>Chúng tôi có gì?</h2><p>5 dịch vụ phổ biến nhất</p></div>
+    <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(220px,1fr))">
+      <div class="card" style="text-align:center"><div class="icon" style="margin:0 auto 20px">🛠️</div><h3>Setup Server</h3><p class="desc">Setup chuyên nghiệp, đẹp, gọn</p></div>
+      <div class="card" style="text-align:center"><div class="icon" style="margin:0 auto 20px">🤖</div><h3>Code Bot</h3><p class="desc">Bot custom theo yêu cầu</p></div>
+      <div class="card" style="text-align:center"><div class="icon" style="margin:0 auto 20px">💻</div><h3>Code Web</h3><p class="desc">Web đẹp, chuẩn SEO, siêu rẻ</p></div>
+      <div class="card" style="text-align:center"><div class="icon" style="margin:0 auto 20px">📢</div><h3>Quảng Cáo</h3><p class="desc">Đưa server đến nhiều người</p></div>
+      <div class="card" style="text-align:center"><div class="icon" style="margin:0 auto 20px">🤝</div><h3>Partner</h3><p class="desc">Đi partner hộ uy tín</p></div>
+    </div>
+    <div style="text-align:center;margin-top:40px">
+      <a class="btn btn-primary" onclick="showPage('pricing')" style="padding:16px 36px">Xem chi tiết & giá →</a>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-head"><h2>Đối Tác Của Chúng Tôi</h2><p>Click vào đối tác để truy cập ngay</p></div>
+    <div class="partners-grid" id="homePartnersPreview"></div>
+    <div style="text-align:center;margin-top:40px">
+      <a class="btn btn-ghost" onclick="showPage('partners')" style="padding:14px 32px">Xem tất cả đối tác →</a>
+    </div>
+  </section>
+</div>
+
+<!-- BẢNG GIÁ -->
+<div class="page" id="page-pricing">
+  <section style="padding-top:80px">
+    <div class="section-head"><h2>Bảng Giá Dịch Vụ</h2><p>Minh bạch - rõ ràng - không phí ẩn</p></div>
+    <div class="grid">
+      <div class="card">
+        <div class="icon">🛠️</div><h3>Setup Server Discord</h3>
+        <p class="desc">Tạo kênh, role, permission, welcome, auto-mod cơ bản.</p>
+        <div class="price"><span data-edit="priceSetup">10.000đ – 20.000đ</span> <small>/ server</small></div>
+        <ul class="features"><li>Chia kênh & role chuẩn</li><li>Bảo mật & permission</li><li>Welcome + Auto-mod</li><li>Hỗ trợ sau setup</li></ul>
+        <a class="btn btn-ghost" data-link href="https://discord.gg/tKm8J2jKkr" target="_blank" rel="noopener noreferrer">Đặt dịch vụ</a>
+      </div>
+      <div class="card featured">
+        <span class="tag">HOT</span><div class="icon">🤖</div><h3>Code Bot Riêng</h3>
+        <p class="desc">Bot theo yêu cầu: kinh tế, mini-game, ticket, verify, custom.</p>
+        <div class="price"><span data-edit="priceBot">50.000đ – 500.000đ</span> <small>/ bot</small></div>
+        <ul class="features"><li>Code theo yêu cầu</li><li>Host miễn phí 1 tháng</li><li>Full source code</li><li>Fix bug bảo hành</li></ul>
+        <a class="btn btn-primary" data-link href="https://discord.gg/tKm8J2jKkr" target="_blank" rel="noopener noreferrer">Đặt làm bot</a>
+      </div>
+      <div class="card">
+        <span class="tag new">NEW</span><div class="icon">💻</div><h3>Code Web</h3>
+        <p class="desc">Landing page, web bán hàng, web dịch vụ, portfolio...</p>
+        <div class="price"><span data-edit="priceWeb">5.000đ – 50.000đ</span> <small>/ web</small></div>
+        <ul class="features"><li>Giao diện đẹp, responsive</li><li>Code sạch, chuẩn SEO</li><li>Full source code</li><li>Hỗ trợ 7 ngày</li></ul>
+        <a class="btn btn-ghost" data-link href="https://discord.gg/tKm8J2jKkr" target="_blank" rel="noopener noreferrer">Đặt làm web</a>
+      </div>
+      <div class="card">
+        <div class="icon">📢</div><h3>Quảng Cáo Server</h3>
+        <p class="desc">Đưa server đến nhiều người dùng hơn qua kênh quảng cáo.</p>
+        <div class="price"><span data-edit="priceAds">0đ – 5.000đ</span> <small>/ server</small></div>
+        <ul class="features"><li>Đăng bài nhiều nơi</li><li>Tiếp cận đúng đối tượng</li><li>Có gói miễn phí</li><li>Báo cáo kết quả</li></ul>
+        <a class="btn btn-ghost" data-link href="https://discord.gg/tKm8J2jKkr" target="_blank" rel="noopener noreferrer">Đặt quảng cáo</a>
+      </div>
+      <div class="card">
+        <div class="icon">🤝</div><h3>Đi Partner Hộ</h3>
+        <p class="desc">Đi partner thay bạn đến 5–10 server uy tín.</p>
+        <div class="price"><span data-edit="pricePartner">10.000đ</span> <small>/ 5–10 server</small></div>
+        <ul class="features"><li>Đi partner tận tay</li><li>Server uy tín</li><li>Báo cáo từng server</li><li>Cam kết đủ số lượng</li></ul>
+        <a class="btn btn-ghost" data-link href="https://discord.gg/tKm8J2jKkr" target="_blank" rel="noopener noreferrer">Đặt partner</a>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- HƯỚNG DẪN -->
+<div class="page" id="page-guide">
+  <section style="padding-top:80px">
+    <div class="section-head"><h2>Quy Trình Đặt Hàng</h2><p>Chỉ mất 2 phút để bắt đầu</p></div>
+    <div class="steps-grid">
+      <div class="step-card"><div class="step-num">1</div><div class="step-icon">🛒</div><h4>Chọn Dịch Vụ</h4><p>Xem bảng giá và chọn gói dịch vụ bạn cần.</p></div>
+      <div class="step-card"><div class="step-num">2</div><div class="step-icon">💬</div><h4>Vào Server Discord</h4><p>Bấm "Vào Server" để tham gia server The Luna Club.</p></div>
+      <div class="step-card"><div class="step-num">3</div><div class="step-icon">🎫</div><h4>Tạo Ticket</h4><p>Vào kênh <b>#create-ticket</b>, ghi rõ <b>tên sản phẩm</b> muốn đặt.</p></div>
+      <div class="step-card"><div class="step-num">4</div><div class="step-icon">⏳</div><h4>Chờ Admin Duyệt</h4><p>Admin tư vấn, thanh toán, và bàn giao.</p></div>
+    </div>
+    <div style="text-align:center;margin-top:40px">
+      <a class="btn btn-primary" data-link href="https://discord.gg/tKm8J2jKkr" target="_blank" rel="noopener noreferrer" style="padding:16px 36px">Bắt đầu đặt hàng ngay →</a>
+    </div>
+  </section>
+</div>
+
+<!-- ĐỐI TÁC -->
+<div class="page" id="page-partners">
+  <section style="padding-top:80px">
+    <div class="section-head">
+      <h2>Đối Tác Của Luna Club</h2>
+      <p>Click vào đối tác để bay thẳng tới server / website của họ</p>
+    </div>
+    <div class="partners-grid" id="partnersGrid"></div>
+
+    <div style="max-width:900px;margin:60px auto 0">
+      <div class="trade-banner" style="background:linear-gradient(90deg,rgba(212,175,55,.15) 0%,transparent 100%)">
+        <div class="text">
+          <h3>💼 Trở thành đối tác của Luna Club</h3>
+          <p>Hợp tác cùng phát triển - Cùng chia sẻ lợi ích - Cùng xây dựng cộng đồng</p>
+        </div>
+        <a class="btn btn-primary" data-link href="https://discord.gg/tKm8J2jKkr" target="_blank" rel="noopener noreferrer">Liên hệ hợp tác →</a>
+      </div>
+    </div>
+
+    <div class="section-head" style="margin-top:60px">
+      <h2 style="font-size:24px">Quyền Lợi Đối Tác</h2>
+    </div>
+    <div class="steps-grid">
+      <div class="step-card"><div class="step-num">✦</div><div class="step-icon">📢</div><h4>Quảng Bá Miễn Phí</h4><p>Được quảng bá trên website và server Discord của Luna Club.</p></div>
+      <div class="step-card"><div class="step-num">✦</div><div class="step-icon">💰</div><h4>Chiết Khấu Hấp Dẫn</h4><p>Ưu đãi chiết khấu khi sử dụng dịch vụ của nhau.</p></div>
+      <div class="step-card"><div class="step-num">✦</div><div class="step-icon">🤝</div><h4>Hỗ Trợ 24/7</h4><p>Đội ngũ admin hỗ trợ đối tác mọi lúc mọi nơi.</p></div>
+      <div class="step-card"><div class="step-num">✦</div><div class="step-icon">🚀</div><h4>Cùng Phát Triển</h4><p>Cùng nhau phát triển cộng đồng Discord Việt Nam.</p></div>
+    </div>
+  </section>
+</div>
+
+<!-- LIÊN HỆ -->
+<div class="page" id="page-contact">
+  <section style="padding-top:80px">
+    <div class="section-head"><h2>Liên Hệ Với Chúng Tôi</h2><p>Hỗ trợ 24/7 qua Discord</p></div>
+    <div class="contact-box">
+      <h2>Trải nghiệm dịch vụ đẳng cấp 🌙</h2>
+      <p>Tham gia server Discord để được tư vấn và đặt dịch vụ.</p>
+      <div class="contact-actions">
+        <a class="btn btn-primary" data-link href="https://discord.gg/tKm8J2jKkr" target="_blank" rel="noopener noreferrer">💬 Vào Server Giao Dịch</a>
+        <a class="btn btn-ghost" data-link href="https://discord.gg/tKm8J2jKkr" target="_blank" rel="noopener noreferrer">🛒 Đặt Hàng Ngay</a>
+      </div>
+    </div>
+    <div style="max-width:700px;margin:40px auto 0;text-align:center">
+      <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(200px,1fr))">
+        <div class="card" style="text-align:center"><div class="icon" style="margin:0 auto 16px">💬</div><h3 style="font-size:16px">Discord</h3><p class="desc">Kênh hỗ trợ chính thức</p></div>
+        <div class="card" style="text-align:center"><div class="icon" style="margin:0 auto 16px">⏰</div><h3 style="font-size:16px">24/7</h3><p class="desc">Hỗ trợ mọi lúc</p></div>
+        <div class="card" style="text-align:center"><div class="icon" style="margin:0 auto 16px">⚡</div><h3 style="font-size:16px">Siêu Tốc</h3><p class="desc">Phản hồi trong 5 phút</p></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<footer>
+  © 2025 THE LUNA CLUB · Dịch vụ Discord & Code Web uy tín · Giao dịch tại: <span data-edit="footerLink">discord.gg/tKm8J2jKkr</span>
+</footer>
+
+<!-- DỮ LIỆU ĐỐI TÁC INLINE (cho export HTML) -->
+<script type="application/json" id="partnersDataJSON">[]</script>
+
+<!-- ADMIN LOGIN -->
+<div class="admin-overlay" id="adminOverlay">
+  <div class="admin-login">
+    <h2>🔐 Admin Login</h2>
+    <p>Nhập mật khẩu để truy cập bảng điều khiển</p>
+    <input type="password" id="adminPass" placeholder="Mật khẩu..." autocomplete="off">
+    <button class="btn btn-primary" id="loginBtn">Đăng nhập</button>
+    <div class="admin-err" id="adminErr">❌ Sai mật khẩu!</div>
+  </div>
+</div>
+
+<!-- ADMIN PANEL -->
+<div class="admin-panel" id="adminPanel">
+  <div class="admin-header">
+    <h3>⚙ Bảng Điều Khiển</h3>
+    <button class="admin-close" id="adminClose">✕</button>
+  </div>
+  <div class="admin-body">
+    <div class="admin-group">
+      <h4>Thông Tin Chung</h4>
+      <div class="admin-field"><label>Tên Logo</label><input type="text" data-input="logoLuna"></div>
+      <div class="admin-field"><label>Logo phụ</label><input type="text" data-input="logoClub"></div>
+      <div class="admin-field"><label>Link Discord</label><input type="text" data-input="discordLink"></div>
+    </div>
+    <div class="admin-group">
+      <h4>Hero</h4>
+      <div class="admin-field"><label>Tiêu đề (HTML)</label><textarea data-input="heroTitle"></textarea></div>
+      <div class="admin-field"><label>Mô tả</label><textarea data-input="heroDesc"></textarea></div>
+      <div class="admin-field"><label>Thống kê 1</label><input type="text" data-input="stat1"></div>
+      <div class="admin-field"><label>Thống kê 2</label><input type="text" data-input="stat2"></div>
+      <div class="admin-field"><label>Thống kê 3</label><input type="text" data-input="stat3"></div>
+    </div>
+    <div class="admin-group">
+      <h4>Bảng Giá</h4>
+      <div class="admin-field"><label>Setup Server</label><input type="text" data-input="priceSetup"></div>
+      <div class="admin-field"><label>Code Bot</label><input type="text" data-input="priceBot"></div>
+      <div class="admin-field"><label>Code Web</label><input type="text" data-input="priceWeb"></div>
+      <div class="admin-field"><label>Quảng Cáo</label><input type="text" data-input="priceAds"></div>
+      <div class="admin-field"><label>Partner</label><input type="text" data-input="pricePartner"></div>
+    </div>
+
+    <!-- ĐỐI TÁC ĐỘNG -->
+    <div class="admin-group">
+      <h4>🤝 Quản Lý Đối Tác</h4>
+      <div class="admin-hint">
+        💡 Nhập thông tin và nhấn <b>➕ Thêm đối tác</b>. Mỗi đối tác chỉ cần 3 trường: Tên · Đại diện (emoji hoặc URL ảnh) · Liên kết. Click vào card sẽ mở link.
+      </div>
+      <div id="partnersAdminList"></div>
+      <button type="button" class="add-partner-btn" id="addPartnerBtn">➕ Thêm đối tác mới</button>
+    </div>
+
+    <div class="admin-group">
+      <h4>Footer</h4>
+      <div class="admin-field"><label>Text link giao dịch</label><input type="text" data-input="footerLink"></div>
+    </div>
+    <div class="admin-actions">
+      <button class="btn btn-success" id="saveBtn">💾 Lưu Thay Đổi</button>
+      <button class="btn btn-primary" id="exportBtn">📥 Tải HTML Mới</button>
+      <button class="btn btn-danger" id="resetBtn">🗑 Reset Về Mặc Định</button>
+    </div>
+  </div>
+</div>
+
+<div class="admin-toast" id="toast">✅ Đã lưu!</div>
+
+<!-- SCRIPT CHỐNG XEM TRỘM -->
+<script>
+(function(){
+  document.addEventListener('contextmenu', function(e){
+    if (e.target.closest('.admin-panel, .admin-overlay, .admin-login, a, button')) return;
+    e.preventDefault(); return false;
+  });
+  document.addEventListener('keydown', function(e){
+    if (e.target.closest('.admin-panel, .admin-overlay, input, textarea')) return;
+    if (e.keyCode === 123) { e.preventDefault(); return false; }
+    if (e.ctrlKey && e.shiftKey && (e.keyCode === 73 || e.keyCode === 105)) { e.preventDefault(); return false; }
+    if (e.ctrlKey && e.shiftKey && (e.keyCode === 74 || e.keyCode === 106)) { e.preventDefault(); return false; }
+    if (e.ctrlKey && e.shiftKey && (e.keyCode === 67 || e.keyCode === 99)) { e.preventDefault(); return false; }
+    if (e.ctrlKey && (e.keyCode === 85 || e.keyCode === 117)) { e.preventDefault(); return false; }
+  });
+  document.addEventListener('copy', function(e){
+    if (e.target.closest('.admin-panel, input, textarea')) return;
+    e.preventDefault(); return false;
+  });
+})();
+</script>
+
+<!-- SCRIPT CHUYỂN TRANG + MENU -->
+<script>
+(function(){
+  window.showPage = function(pageId){
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    const target = document.getElementById('page-' + pageId);
+    if (target) target.classList.add('active');
+    document.querySelectorAll('[data-page]').forEach(a => {
+      a.classList.toggle('active', a.dataset.page === pageId);
+    });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+  const hamburgerBtn = document.getElementById('hamburgerBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+  const mobileClose = document.getElementById('mobileClose');
+  hamburgerBtn.addEventListener('click', () => {
+    mobileMenu.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  });
+  window.closeMobile = function(){
+    mobileMenu.classList.remove('active');
+    document.body.style.overflow = '';
+  };
+  mobileClose.addEventListener('click', closeMobile);
+  mobileMenu.addEventListener('click', (e) => {
+    if (e.target === mobileMenu) closeMobile();
+  });
+})();
+</script>
+
+<!-- SCRIPT ADMIN + ĐỐI TÁC ĐỘNG -->
+<script>
+(function(){
+  const ADMIN_PASSWORD = 'luna2025';
+  const STORAGE_KEY = 'luna_club_config';
+
+  // Biến runtime cho danh sách đối tác
+  let partnerItems = [];
+
+  const DEFAULT_PARTNERS = [
+    { name: 'Gaming VN',       avatar: '🎮', link: 'https://discord.gg/tKm8J2jKkr' },
+    { name: 'Diamond Shop',    avatar: '💎', link: 'https://discord.gg/tKm8J2jKkr' },
+    { name: 'Boost Service',   avatar: '🚀', link: 'https://discord.gg/tKm8J2jKkr' },
+    { name: 'Design Pro',      avatar: '🎨', link: 'https://discord.gg/tKm8J2jKkr' },
+    { name: 'Market Hub',      avatar: '🛒', link: 'https://discord.gg/tKm8J2jKkr' },
+    { name: 'Giveaway Team',   avatar: '🎁', link: 'https://discord.gg/tKm8J2jKkr' }
+  ];
+
+  // DOM refs
+  const adminBtn = document.getElementById('adminBtn');
+  const adminOverlay = document.getElementById('adminOverlay');
+  const adminPanel = document.getElementById('adminPanel');
+  const adminClose = document.getElementById('adminClose');
+  const loginBtn = document.getElementById('loginBtn');
+  const adminPass = document.getElementById('adminPass');
+  const adminErr = document.getElementById('adminErr');
+  const saveBtn = document.getElementById('saveBtn');
+  const exportBtn = document.getElementById('exportBtn');
+  const resetBtn = document.getElementById('resetBtn');
+  const toast = document.getElementById('toast');
+  const partnersGrid = document.getElementById('partnersGrid');
+  const homePartnersPreview = document.getElementById('homePartnersPreview');
+  const partnersAdminList = document.getElementById('partnersAdminList');
+  const addPartnerBtn = document.getElementById('addPartnerBtn');
+  const partnersDataJSON = document.getElementById('partnersDataJSON');
+
+  // ═══ Helpers ═══
+  function escapeHtml(s){
+    return String(s == null ? '' : s)
+      .replace(/&/g,'&amp;').replace(/</g,'&lt;')
+      .replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+
+  // Load config
+  function loadConfig(){
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      return raw ? JSON.parse(raw) : {};
+    } catch(e) { return {}; }
+  }
+
+  // Load partners ban đầu: localStorage → JSON inline → defaults
+  function loadInitialPartners(){
+    const cfg = loadConfig();
+    if (Array.isArray(cfg.partners) && cfg.partners.length) return cfg.partners;
+    try {
+      const inline = JSON.parse(partnersDataJSON.textContent);
+      if (Array.isArray(inline) && inline.length) return inline;
+    } catch(e) {}
+    return DEFAULT_PARTNERS.slice();
+  }
+
+  // Render avatar
+  function renderAvatar(avatar){
+    if (!avatar || !String(avatar).trim()) return '🤝';
+    const a = String(avatar).trim();
+    if (/^https?:\/\//i.test(a)) {
+      return `<img src="${escapeHtml(a)}" alt="" loading="lazy" onerror="this.style.display='none';this.parentNode.textContent='🤝'">`;
+    }
+    return escapeHtml(a);
+  }
+
+  // Render 1 card đối tác
+  function renderPartnerCard(p){
+    const inner = `
+      <div class="partner-avatar">${renderAvatar(p.avatar)}</div>
+      <div class="partner-name">${escapeHtml(p.name || 'Đối tác')}</div>
+      ${p.link ? '<div class="partner-visit">Truy cập →</div>' : ''}
+    `;
+    if (p.link && String(p.link).trim()) {
+      return `<a href="${escapeHtml(p.link)}" target="_blank" rel="noopener noreferrer" class="partner-card">${inner}</a>`;
+    }
+    return `<div class="partner-card">${inner}</div>`;
+  }
+
+  // Render grid đối tác
+  function renderPartners(items){
+    const valid = (items || []).filter(p => p && p.name && p.name.trim());
+    if (partnersGrid) {
+      partnersGrid.innerHTML = valid.length
+        ? valid.map(renderPartnerCard).join('')
+        : '<div class="partners-empty">Chưa có đối tác nào. Thêm trong Admin Panel ⚙</div>';
+    }
+    if (homePartnersPreview) {
+      homePartnersPreview.innerHTML = valid.length
+        ? valid.slice(0, 3).map(renderPartnerCard).join('')
+        : '<div class="partners-empty">Chưa có đối tác nào.</div>';
+    }
+  }
+
+  // Render form admin đối tác (dynamic)
+  function renderAdminPartners(){
+    if (!partnersAdminList) return;
+    partnersAdminList.innerHTML = '';
+    if (partnerItems.length === 0) {
+      partnersAdminList.innerHTML = '<div style="text-align:center;color:#999;font-size:12px;padding:16px;">Chưa có đối tác. Nhấn "➕ Thêm đối tác mới" để thêm.</div>';
+      return;
+    }
+    partnerItems.forEach((p, i) => {
+      const box = document.createElement('div');
+      box.className = 'admin-partner-box';
+      box.innerHTML = `
+        <div class="partner-box-header">
+          <h5>Đối tác #${i + 1}</h5>
+          <div class="partner-actions">
+            <button type="button" class="partner-move-btn" data-move="up" data-idx="${i}" title="Lên" ${i === 0 ? 'disabled' : ''}>⬆</button>
+            <button type="button" class="partner-move-btn" data-move="down" data-idx="${i}" title="Xuống" ${i === partnerItems.length - 1 ? 'disabled' : ''}>⬇</button>
+            <button type="button" class="partner-remove-btn" data-remove="${i}" title="Xóa">🗑</button>
+          </div>
+        </div>
+        <div class="admin-field">
+          <label>Tên đối tác</label>
+          <input type="text" data-idx="${i}" data-field="name" value="${escapeHtml(p.name || '')}" placeholder="VD: Gaming VN" maxlength="60">
+        </div>
+        <div class="admin-field">
+          <label>Đại diện (emoji hoặc URL ảnh)</label>
+          <input type="text" data-idx="${i}" data-field="avatar" value="${escapeHtml(p.avatar || '')}" placeholder="🎮 hoặc https://.../logo.png" maxlength="300">
+        </div>
+        <div class="admin-field">
+          <label>Liên kết (URL)</label>
+          <input type="url" data-idx="${i}" data-field="link" value="${escapeHtml(p.link || '')}" placeholder="https://discord.gg/abc">
+        </div>
+      `;
+      partnersAdminList.appendChild(box);
+    });
+  }
+
+  // Sync input → partnerItems
+  partnersAdminList.addEventListener('input', (e) => {
+    const idx = e.target.dataset.idx;
+    const field = e.target.dataset.field;
+    if (idx !== undefined && field) {
+      partnerItems[+idx][field] = e.target.value;
+    }
+  });
+
+  // Xóa / Di chuyển
+  partnersAdminList.addEventListener('click', (e) => {
+    const removeBtn = e.target.closest('[data-remove]');
+    if (removeBtn) {
+      const idx = +removeBtn.dataset.remove;
+      if (!confirm(`Xóa đối tác "${partnerItems[idx].name || '(chưa đặt tên)'}"?`)) return;
+      partnerItems.splice(idx, 1);
+      renderAdminPartners();
+      return;
+    }
+    const moveBtn = e.target.closest('[data-move]');
+    if (moveBtn) {
+      const idx = +moveBtn.dataset.idx;
+      const dir = moveBtn.dataset.move;
+      if (dir === 'up' && idx > 0) {
+        [partnerItems[idx - 1], partnerItems[idx]] = [partnerItems[idx], partnerItems[idx - 1]];
+        renderAdminPartners();
+      } else if (dir === 'down' && idx < partnerItems.length - 1) {
+        [partnerItems[idx + 1], partnerItems[idx]] = [partnerItems[idx], partnerItems[idx + 1]];
+        renderAdminPartners();
+      }
+    }
+  });
+
+  // Thêm đối tác
+  addPartnerBtn.addEventListener('click', () => {
+    partnerItems.push({ name: '', avatar: '🤝', link: '' });
+    renderAdminPartners();
+    setTimeout(() => {
+      const boxes = partnersAdminList.querySelectorAll('.admin-partner-box');
+      boxes[boxes.length - 1]?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      boxes[boxes.length - 1]?.querySelector('input')?.focus();
+    }, 50);
+  });
+
+  // Read other fields
+  function readForm(){
+    const config = {};
+    document.querySelectorAll('[data-input]').forEach(input => {
+      const key = input.dataset.input;
+      const val = input.value.trim();
+      if (val) config[key] = val;
+    });
+    // Partners từ runtime
+    config.partners = partnerItems.filter(p => p && p.name && p.name.trim());
+    return config;
+  }
+
+  // Apply config
+  function applyConfig(config){
+    Object.keys(config).forEach(key => {
+      if (key === 'discordLink' || key === 'partners') return;
+      if (key === 'logoLuna') {
+        document.querySelectorAll('[data-edit="logoLuna"], [data-edit="logoLunaM"]').forEach(el => el.textContent = config[key]);
+        return;
+      }
+      const els = document.querySelectorAll(`[data-edit="${key}"]`);
+      els.forEach(el => {
+        if (el.dataset.html === 'true') el.innerHTML = config[key];
+        else el.textContent = config[key];
+      });
+    });
+    if (config.discordLink) {
+      document.querySelectorAll('[data-link]').forEach(a => a.href = config.discordLink);
+    }
+    if (Array.isArray(config.partners)) {
+      partnerItems = config.partners.slice();
+      renderPartners(partnerItems);
+      renderAdminPartners();
+    }
+  }
+
+  // Fill form
+  function fillForm(config){
+    document.querySelectorAll('[data-input]').forEach(input => {
+      const key = input.dataset.input;
+      if (config[key] !== undefined) input.value = config[key];
+    });
+    renderAdminPartners();
+  }
+
+  // Save
+  function saveConfig(){
+    // Đồng bộ partnerItems từ form trước khi save (đảm bảo data mới nhất)
+    const config = readForm();
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(config));
+    // Update inline JSON luôn (để export dùng)
+    partnersDataJSON.textContent = JSON.stringify(config.partners || []);
+    applyConfig(config);
+    showToast('✅ Đã lưu thay đổi!');
+  }
+
+  // Export HTML
+  function exportHTML(){
+    // Đảm bảo JSON inline mới nhất
+    partnersDataJSON.textContent = JSON.stringify(partnerItems.filter(p => p.name && p.name.trim()));
+    
+    const clone = document.documentElement.cloneNode(true);
+    clone.querySelectorAll('.admin-panel, .admin-overlay, .admin-btn, .admin-toast, .mobile-menu').forEach(el => el.remove());
+    const scripts = clone.querySelectorAll('script');
+    scripts.forEach((s, idx) => { if (idx >= 1) s.remove(); });
+    clone.querySelectorAll('[data-input], [data-partner]').forEach(el => {
+      el.removeAttribute('data-input');
+      el.removeAttribute('data-partner');
+    });
+    const now = new Date();
+    const dateStr = `${now.getDate()}-${now.getMonth()+1}-${now.getFullYear()}`;
+    const html = '<!DOCTYPE html>\n' + clone.outerHTML;
+    const blob = new Blob([html], { type: 'text/html;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `index-luna-${dateStr}.html`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+    showToast('📥 Đã tải file HTML mới!');
+  }
+
+  function resetConfig(){
+    if (!confirm('Reset về mặc định? Mọi thay đổi sẽ mất!')) return;
+    localStorage.removeItem(STORAGE_KEY);
+    location.reload();
+  }
+
+  function showToast(msg){
+    toast.textContent = msg;
+    toast.classList.add('show');
+    setTimeout(() => toast.classList.remove('show'), 2500);
+  }
+
+  // Events
+  adminBtn.addEventListener('click', () => {
+    adminOverlay.classList.add('active');
+    adminPass.value = '';
+    adminErr.style.display = 'none';
+    setTimeout(() => adminPass.focus(), 100);
+  });
+  adminOverlay.addEventListener('click', (e) => {
+    if (e.target === adminOverlay) adminOverlay.classList.remove('active');
+  });
+  loginBtn.addEventListener('click', () => {
+    if (adminPass.value === ADMIN_PASSWORD) {
+      adminOverlay.classList.remove('active');
+      adminPanel.classList.add('active');
+      fillForm(loadConfig());
+    } else {
+      adminErr.style.display = 'block';
+      adminPass.value = '';
+      adminPass.focus();
+    }
+  });
+  adminPass.addEventListener('keydown', (e) => { if (e.key === 'Enter') loginBtn.click(); });
+  adminClose.addEventListener('click', () => adminPanel.classList.remove('active'));
+  saveBtn.addEventListener('click', saveConfig);
+  exportBtn.addEventListener('click', exportHTML);
+  resetBtn.addEventListener('click', resetConfig);
+
+  // Init
+  partnerItems = loadInitialPartners();
+  renderPartners(partnerItems);
+  renderAdminPartners();
+
+  const initialConfig = loadConfig();
+  if (Object.keys(initialConfig).length > 0) applyConfig(initialConfig);
+
+})();
+</script>
+
+</body>
+</html>
