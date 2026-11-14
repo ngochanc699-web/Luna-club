@@ -32,50 +32,23 @@
   .logo .the{font-family:'Great Vibes',cursive;color:var(--gold);font-size:18px;margin-bottom:-5px;margin-right:20px;}
   .logo .luna{font-family:'Playfair Display',serif;font-style:italic;font-size:32px;font-weight:600;color:var(--gold-light);letter-spacing:2px;}
   .logo .club{font-family:'Montserrat',sans-serif;font-size:10px;letter-spacing:6px;color:var(--gold);margin-top:2px;margin-left:5px;}
-  .nav-links{display:flex;gap:4px;list-style:none}
-  .nav-links a{color:var(--muted);font-size:13px;font-weight:600;transition:.2s;text-transform:uppercase;letter-spacing:1px;padding:10px 14px;border-radius:6px;display:block;cursor:pointer;}
+  .nav-links{display:flex;gap:2px;list-style:none}
+  .nav-links a{color:var(--muted);font-size:12px;font-weight:600;transition:.2s;text-transform:uppercase;letter-spacing:1px;padding:10px 12px;border-radius:6px;display:block;cursor:pointer;}
   .nav-links a:hover, .nav-links a.active{color:var(--gold);background:rgba(212,175,55,.08)}
   .nav-actions{display:flex;align-items:center;gap:12px}
   .hamburger{display:none;background:transparent;border:1px solid var(--border);color:var(--gold);width:44px;height:44px;border-radius:6px;cursor:pointer;font-size:22px;transition:.2s;}
   .hamburger:hover{background:rgba(212,175,55,.1);border-color:var(--gold)}
 
-  /* ═══ MOBILE MENU — DRAWER GỌN ═══ */
-  .mobile-menu{
-    position:fixed;inset:0;background:rgba(0,0,0,0.65);
-    z-index:200;display:none;backdrop-filter:blur(6px);
-  }
+  /* ═══ MOBILE MENU ═══ */
+  .mobile-menu{position:fixed;inset:0;background:rgba(0,0,0,0.65);z-index:200;display:none;backdrop-filter:blur(6px);}
   .mobile-menu.active{display:block}
-  .mobile-panel{
-    position:absolute;top:0;right:0;bottom:0;
-    width:85%;max-width:320px;
-    background:linear-gradient(180deg,#0f0f0f,#050505);
-    border-left:1px solid var(--gold);
-    padding:70px 24px 24px;
-    transform:translateX(100%);transition:transform .35s cubic-bezier(.4,0,.2,1);
-    overflow-y:auto;box-shadow:-20px 0 60px rgba(0,0,0,0.8);
-  }
+  .mobile-panel{position:absolute;top:0;right:0;bottom:0;width:85%;max-width:320px;background:linear-gradient(180deg,#0f0f0f,#050505);border-left:1px solid var(--gold);padding:70px 24px 24px;transform:translateX(100%);transition:transform .35s cubic-bezier(.4,0,.2,1);overflow-y:auto;box-shadow:-20px 0 60px rgba(0,0,0,0.8);}
   .mobile-menu.active .mobile-panel{transform:translateX(0)}
-  .mobile-close{
-    position:absolute;top:18px;right:18px;
-    width:40px;height:40px;background:rgba(212,175,55,.1);
-    border:1px solid var(--border);border-radius:50%;
-    color:var(--gold);font-size:20px;cursor:pointer;
-    display:grid;place-items:center;transition:.2s;
-  }
+  .mobile-close{position:absolute;top:18px;right:18px;width:40px;height:40px;background:rgba(212,175,55,.1);border:1px solid var(--border);border-radius:50%;color:var(--gold);font-size:20px;cursor:pointer;display:grid;place-items:center;transition:.2s;}
   .mobile-close:hover{background:var(--gold);color:#000;transform:rotate(90deg)}
   .mobile-links{display:flex;flex-direction:column;gap:4px;list-style:none;}
-  .mobile-links li{margin:0}
-  .mobile-links a{
-    color:var(--text);font-size:15px;font-weight:600;
-    padding:14px 18px;border-radius:8px;cursor:pointer;
-    border-left:3px solid transparent;transition:.2s;
-    display:flex;align-items:center;gap:14px;
-    letter-spacing:.5px;
-  }
-  .mobile-links a:hover, .mobile-links a.active{
-    color:var(--gold);background:rgba(212,175,55,.08);
-    border-left-color:var(--gold);padding-left:24px;
-  }
+  .mobile-links a{color:var(--text);font-size:15px;font-weight:600;padding:14px 18px;border-radius:8px;cursor:pointer;border-left:3px solid transparent;transition:.2s;display:flex;align-items:center;gap:14px;letter-spacing:.5px;}
+  .mobile-links a:hover, .mobile-links a.active{color:var(--gold);background:rgba(212,175,55,.08);border-left-color:var(--gold);padding-left:24px;}
   .mobile-links a i{font-style:normal;font-size:20px;width:26px;text-align:center;}
   .mobile-divider{height:1px;background:var(--border);margin:16px 8px}
   .mobile-cta{display:block;margin-top:20px;text-align:center;padding:14px;background:linear-gradient(135deg,var(--gold),#b8860b);color:#000;border-radius:6px;font-weight:800;font-size:13px;letter-spacing:1px;text-transform:uppercase;}
@@ -129,52 +102,17 @@
   .tag.new{background:linear-gradient(135deg,#22c55e,#16a34a);color:#fff;}
 
   /* ═══ ĐỐI TÁC ═══ */
-  .partners-grid{
-    display:grid;gap:24px;
-    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-    max-width:1100px;margin:0 auto;
-  }
-  .partner-card{
-    background:linear-gradient(180deg,#1a1a1a 0%,#0f0f0f 100%);
-    border:1px solid var(--border);border-radius:12px;
-    padding:32px 20px;text-align:center;position:relative;
-    display:flex;flex-direction:column;align-items:center;justify-content:center;
-    transition:.3s;min-height:200px;text-decoration:none;color:inherit;
-  }
+  .partners-grid{display:grid;gap:24px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));max-width:1100px;margin:0 auto;}
+  .partner-card{background:linear-gradient(180deg,#1a1a1a 0%,#0f0f0f 100%);border:1px solid var(--border);border-radius:12px;padding:32px 20px;text-align:center;position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;transition:.3s;min-height:200px;text-decoration:none;color:inherit;}
   .partner-card[href]{cursor:pointer}
-  .partner-card[href]:hover{
-    transform:translateY(-10px) scale(1.02);
-    border-color:var(--gold);
-    box-shadow:0 20px 50px rgba(212,175,55,.3);
-    background:linear-gradient(180deg,#221e12 0%,#0f0f0f 100%);
-  }
-  .partner-card[href]::after{
-    content:"🔗";position:absolute;top:14px;right:14px;
-    font-size:14px;opacity:0;transition:.3s;
-  }
+  .partner-card[href]:hover{transform:translateY(-10px) scale(1.02);border-color:var(--gold);box-shadow:0 20px 50px rgba(212,175,55,.3);background:linear-gradient(180deg,#221e12 0%,#0f0f0f 100%);}
+  .partner-card[href]::after{content:"🔗";position:absolute;top:14px;right:14px;font-size:14px;opacity:0;transition:.3s;}
   .partner-card[href]:hover::after{opacity:1}
-  .partner-avatar{
-    width:90px;height:90px;border-radius:50%;
-    background:linear-gradient(135deg,var(--gold),#b8860b);
-    display:grid;place-items:center;font-size:42px;
-    margin-bottom:18px;border:3px solid rgba(212,175,55,.3);
-    box-shadow:0 0 30px rgba(212,175,55,.3);
-    transition:.3s;overflow:hidden;color:#000;
-  }
+  .partner-avatar{width:90px;height:90px;border-radius:50%;background:linear-gradient(135deg,var(--gold),#b8860b);display:grid;place-items:center;font-size:42px;margin-bottom:18px;border:3px solid rgba(212,175,55,.3);box-shadow:0 0 30px rgba(212,175,55,.3);transition:.3s;overflow:hidden;color:#000;}
   .partner-avatar img{width:100%;height:100%;object-fit:cover;border-radius:50%}
-  .partner-card[href]:hover .partner-avatar{
-    transform:scale(1.12) rotate(-6deg);
-    box-shadow:0 0 60px rgba(212,175,55,.7);
-  }
-  .partner-name{
-    font-family:'Playfair Display',serif;font-size:20px;
-    color:var(--gold-light);font-weight:600;margin-bottom:10px;
-  }
-  .partner-visit{
-    color:var(--gold);font-size:10px;letter-spacing:2px;
-    text-transform:uppercase;font-weight:700;opacity:.6;
-    transition:.3s;
-  }
+  .partner-card[href]:hover .partner-avatar{transform:scale(1.12) rotate(-6deg);box-shadow:0 0 60px rgba(212,175,55,.7);}
+  .partner-name{font-family:'Playfair Display',serif;font-size:20px;color:var(--gold-light);font-weight:600;margin-bottom:10px;}
+  .partner-visit{color:var(--gold);font-size:10px;letter-spacing:2px;text-transform:uppercase;font-weight:700;opacity:.6;transition:.3s;}
   .partner-card[href]:hover .partner-visit{opacity:1;color:var(--gold-light)}
   .partners-empty{text-align:center;color:var(--muted);padding:60px 20px;font-size:14px;}
 
@@ -193,6 +131,18 @@
   .step-card h4{color:var(--gold-light);font-size:16px;margin-bottom:10px;font-family:'Playfair Display',serif;}
   .step-card p{color:var(--muted);font-size:13px;line-height:1.6;}
 
+  /* ═══ ĐIỀU KHOẢN (TERMS) ═══ */
+  .terms-container{max-width:900px;margin:0 auto;background:linear-gradient(180deg,#1a1a1a 0%,#0f0f0f 100%);border:1px solid var(--border);border-radius:12px;padding:50px 40px;box-shadow:0 10px 40px rgba(0,0,0,0.5);}
+  .terms-content{color:#ccc;font-size:14px;line-height:1.8;}
+  .terms-content h3{color:var(--gold-light);font-family:'Playfair Display',serif;font-size:20px;margin:30px 0 12px;border-bottom:1px solid var(--border);padding-bottom:8px;}
+  .terms-content h3:first-child{margin-top:0;}
+  .terms-content p{margin-bottom:14px;}
+  .terms-content ul{margin:0 0 20px 24px;}
+  .terms-content li{margin-bottom:8px;}
+  .terms-content strong{color:var(--gold);}
+  .terms-content a{color:var(--gold);text-decoration:underline;}
+  .terms-updated{font-size:12px;color:var(--muted);text-align:center;margin-top:40px;padding-top:20px;border-top:1px dashed var(--border);}
+
   /* ═══ CONTACT ═══ */
   .contact-box{max-width:700px;margin:0 auto;background:linear-gradient(180deg,#1a1a1a 0%,#0f0f0f 100%);border:1px solid var(--border);border-radius:8px;padding:50px 36px;text-align:center;}
   .contact-box h2{font-size:28px;margin-bottom:12px;font-weight:700;font-family:'Playfair Display',serif;color:var(--gold-light)}
@@ -200,7 +150,9 @@
   .contact-actions{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
 
   /* ═══ FOOTER ═══ */
-  footer{padding:40px 6%;text-align:center;color:var(--muted);font-size:12px;border-top:1px solid var(--border);letter-spacing:1px;margin-top:60px}
+  footer{padding:40px 6%;text-align:center;color:var(--muted);font-size:12px;border-top:1px solid var(--border);letter-spacing:1px;margin-top:60px;}
+  footer a{color:var(--gold);transition:.2s;}
+  footer a:hover{color:var(--gold-light);text-decoration:underline;}
 
   /* ═══ FLOAT ═══ */
   .float-discord{position:fixed;bottom:28px;right:28px;z-index:99;width:60px;height:60px;border-radius:50%;background:linear-gradient(135deg,var(--gold),#b8860b);display:grid;place-items:center;font-size:26px;color:#000;box-shadow:0 10px 30px rgba(212,175,55,.4);transition:.3s;animation:pulse 2s infinite;}
@@ -218,6 +170,7 @@
     .float-discord{width:56px;height:56px;font-size:24px;bottom:20px;right:20px}
     .trade-banner{padding:24px;text-align:center;justify-content:center;border-left:none;border-top:4px solid var(--gold)}
     .contact-box{padding:32px 24px}
+    .terms-container{padding:30px 20px;}
   }
 
   body{-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;}
@@ -251,7 +204,6 @@
   .admin-field input:focus,.admin-field textarea:focus{border-color:var(--gold);background:rgba(212,175,55,0.05)}
   .admin-field textarea{resize:vertical;min-height:70px}
 
-  /* Partner admin dynamic */
   .admin-partner-box{background:rgba(212,175,55,.03);border:1px solid var(--border);border-radius:8px;padding:14px;margin-bottom:12px;position:relative;}
   .partner-box-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;}
   .partner-box-header h5{color:var(--gold-light);font-size:12px;font-family:'Playfair Display',serif;}
@@ -289,6 +241,7 @@
     <li><a onclick="showPage('pricing')" data-page="pricing">Bảng Giá</a></li>
     <li><a onclick="showPage('guide')" data-page="guide">Hướng Dẫn</a></li>
     <li><a onclick="showPage('partners')" data-page="partners">Đối Tác</a></li>
+    <li><a onclick="showPage('terms')" data-page="terms">Điều Khoản</a></li>
     <li><a onclick="showPage('contact')" data-page="contact">Liên Hệ</a></li>
   </ul>
   <div class="nav-actions">
@@ -297,7 +250,7 @@
   </div>
 </nav>
 
-<!-- MOBILE MENU — DRAWER GỌN -->
+<!-- MOBILE MENU -->
 <div class="mobile-menu" id="mobileMenu">
   <div class="mobile-panel">
     <button class="mobile-close" id="mobileClose">✕</button>
@@ -306,6 +259,7 @@
       <li><a onclick="showPage('pricing'); closeMobile()" data-page="pricing"><i>💰</i> Bảng Giá</a></li>
       <li><a onclick="showPage('guide'); closeMobile()" data-page="guide"><i>📖</i> Hướng Dẫn</a></li>
       <li><a onclick="showPage('partners'); closeMobile()" data-page="partners"><i>🤝</i> Đối Tác</a></li>
+      <li><a onclick="showPage('terms'); closeMobile()" data-page="terms"><i>📜</i> Điều Khoản</a></li>
       <li><a onclick="showPage('contact'); closeMobile()" data-page="contact"><i>📞</i> Liên Hệ</a></li>
     </ul>
     <div class="mobile-divider"></div>
@@ -454,6 +408,45 @@
   </section>
 </div>
 
+<!-- 📜 ĐIỀU KHOẢN DỊCH VỤ -->
+<div class="page" id="page-terms">
+  <section style="padding-top:80px">
+    <div class="section-head">
+      <h2>📜 Điều Khoản Dịch Vụ</h2>
+      <p>Vui lòng đọc kỹ trước khi sử dụng dịch vụ</p>
+    </div>
+    
+    <div class="terms-container">
+      <div class="terms-content" id="termsContent" data-edit="termsContent" data-html="true">
+        <!-- Nội dung mặc định (sẽ bị thay thế nếu sửa trong Admin) -->
+        <h3>1. Chấp Nhận Điều Khoản</h3>
+        <p>Khi truy cập và sử dụng dịch vụ tại <strong>THE LUNA CLUB</strong>, bạn đồng ý tuân thủ các điều khoản và điều kiện được nêu tại đây. Nếu không đồng ý, vui lòng ngừng sử dụng dịch vụ.</p>
+        
+        <h3>2. Dịch Vụ Cung Cấp</h3>
+        <p>Chúng tôi cung cấp các dịch vụ liên quan đến Discord và phát triển web bao gồm: Setup Server, Code Bot Riêng, Code Web, Quảng Cáo và Đi Partner Hộ. Chúng tôi có quyền từ chối cung cấp dịch vụ nếu yêu cầu vi phạm pháp luật hoặc Điều khoản của Discord.</p>
+        
+        <h3>3. Thanh Toán & Hoàn Tiền</h3>
+        <ul>
+          <li><strong>Thanh toán:</strong> Khách hàng thanh toán theo thỏa thuận (thường là cọc trước hoặc thanh toán 100% trước khi làm).</li>
+          <li><strong>Hoàn tiền:</strong> Chỉ hoàn tiền nếu chúng tôi không thể hoàn thành dịch vụ đúng hạn cam kết. Không hoàn tiền sau khi sản phẩm đã bàn giao và nghiệm thu.</li>
+          <li><strong>Bảo hành:</strong> Tùy vào từng gói dịch vụ (VD: bot được bảo hành fix bug 1 tháng, web được hỗ trợ chỉnh sửa 7 ngày).</li>
+        </ul>
+
+        <h3>4. Trách Nhiệm Của Khách Hàng</h3>
+        <p>Khách hàng chịu trách nhiệm về tính chính xác của thông tin cung cấp và tự bảo mật tài khoản Discord/Web của mình. Không sử dụng dịch vụ cho các mục đích lừa đảo, phá hoại, hoặc vi phạm pháp luật Việt Nam.</p>
+
+        <h3>5. Bảo Mật Thông Tin</h3>
+        <p>Chúng tôi cam kết bảo mật thông tin cá nhân và tài khoản của khách hàng. Thông tin chỉ được sử dụng để thực hiện dịch vụ và sẽ không bán hoặc chia sẻ cho bên thứ ba khi chưa có sự đồng ý.</p>
+
+        <h3>6. Thay Đổi Điều Khoản</h3>
+        <p>THE LUNA CLUB có quyền thay đổi, chỉnh sửa các điều khoản này bất kỳ lúc nào mà không cần báo trước. Việc tiếp tục sử dụng dịch vụ sau khi có thay đổi đồng nghĩa với việc bạn chấp nhận các điều khoản mới.</p>
+        
+        <div class="terms-updated">Cập nhật lần cuối: Tháng 11, 2026</div>
+      </div>
+    </div>
+  </section>
+</div>
+
 <!-- LIÊN HỆ -->
 <div class="page" id="page-contact">
   <section style="padding-top:80px">
@@ -476,11 +469,14 @@
   </section>
 </div>
 
+<!-- FOOTER -->
 <footer>
-  © 2025 THE LUNA CLUB · Dịch vụ Discord & Code Web uy tín · Giao dịch tại: <span data-edit="footerLink">discord.gg/tKm8J2jKkr</span>
+  © 2025 THE LUNA CLUB · Dịch vụ Discord & Code Web uy tín · Giao dịch tại: <span data-edit="footerLink">discord.gg/tKm8J2jKkr</span><br><br>
+  <a onclick="showPage('terms')" style="cursor:pointer; margin: 0 10px;">Điều Khoản Dịch Vụ</a> | 
+  <a onclick="showPage('contact')" style="cursor:pointer; margin: 0 10px;">Liên Hệ</a>
 </footer>
 
-<!-- DỮ LIỆU ĐỐI TÁC INLINE (cho export HTML) -->
+<!-- DỮ LIỆU ĐỐI TÁC INLINE -->
 <script type="application/json" id="partnersDataJSON">[]</script>
 
 <!-- ADMIN LOGIN -->
@@ -523,15 +519,23 @@
       <div class="admin-field"><label>Quảng Cáo</label><input type="text" data-input="priceAds"></div>
       <div class="admin-field"><label>Partner</label><input type="text" data-input="pricePartner"></div>
     </div>
-
+    
     <!-- ĐỐI TÁC ĐỘNG -->
     <div class="admin-group">
       <h4>🤝 Quản Lý Đối Tác</h4>
-      <div class="admin-hint">
-        💡 Nhập thông tin và nhấn <b>➕ Thêm đối tác</b>. Mỗi đối tác chỉ cần 3 trường: Tên · Đại diện (emoji hoặc URL ảnh) · Liên kết. Click vào card sẽ mở link.
-      </div>
+      <div class="admin-hint">💡 Nhập thông tin và nhấn Thêm đối tác.</div>
       <div id="partnersAdminList"></div>
       <button type="button" class="add-partner-btn" id="addPartnerBtn">➕ Thêm đối tác mới</button>
+    </div>
+
+    <!-- ĐIỀU KHOẢN -->
+    <div class="admin-group">
+      <h4>📜 Nội Dung Điều Khoản</h4>
+      <div class="admin-hint">💡 Có thể dùng thẻ HTML cơ bản như &lt;h3&gt;, &lt;p&gt;, &lt;ul&gt;, &lt;li&gt;, &lt;strong&gt; để định dạng.</div>
+      <div class="admin-field">
+        <label>Nội dung trang Điều Khoản</label>
+        <textarea data-input="termsContent" style="min-height: 200px;"></textarea>
+      </div>
     </div>
 
     <div class="admin-group">
@@ -570,7 +574,7 @@
 })();
 </script>
 
-<!-- SCRIPT CHUYỂN TRANG + MENU -->
+<!-- SCRIPT CHUYỂN TRANG -->
 <script>
 (function(){
   window.showPage = function(pageId){
@@ -585,28 +589,18 @@
   const hamburgerBtn = document.getElementById('hamburgerBtn');
   const mobileMenu = document.getElementById('mobileMenu');
   const mobileClose = document.getElementById('mobileClose');
-  hamburgerBtn.addEventListener('click', () => {
-    mobileMenu.classList.add('active');
-    document.body.style.overflow = 'hidden';
-  });
-  window.closeMobile = function(){
-    mobileMenu.classList.remove('active');
-    document.body.style.overflow = '';
-  };
+  hamburgerBtn.addEventListener('click', () => { mobileMenu.classList.add('active'); document.body.style.overflow = 'hidden'; });
+  window.closeMobile = function(){ mobileMenu.classList.remove('active'); document.body.style.overflow = ''; };
   mobileClose.addEventListener('click', closeMobile);
-  mobileMenu.addEventListener('click', (e) => {
-    if (e.target === mobileMenu) closeMobile();
-  });
+  mobileMenu.addEventListener('click', (e) => { if (e.target === mobileMenu) closeMobile(); });
 })();
 </script>
 
-<!-- SCRIPT ADMIN + ĐỐI TÁC ĐỘNG -->
+<!-- SCRIPT ADMIN + ĐỐI TÁC -->
 <script>
 (function(){
   const ADMIN_PASSWORD = 'luna2025';
   const STORAGE_KEY = 'luna_club_config';
-
-  // Biến runtime cho danh sách đối tác
   let partnerItems = [];
 
   const DEFAULT_PARTNERS = [
@@ -618,7 +612,23 @@
     { name: 'Giveaway Team',   avatar: '🎁', link: 'https://discord.gg/tKm8J2jKkr' }
   ];
 
-  // DOM refs
+  const DEFAULT_TERMS = `
+    <h3>1. Chấp Nhận Điều Khoản</h3>
+    <p>Khi truy cập và sử dụng dịch vụ tại <strong>THE LUNA CLUB</strong>, bạn đồng ý tuân thủ các điều khoản và điều kiện được nêu tại đây. Nếu không đồng ý, vui lòng ngừng sử dụng dịch vụ.</p>
+    <h3>2. Dịch Vụ Cung Cấp</h3>
+    <p>Chúng tôi cung cấp các dịch vụ liên quan đến Discord và phát triển web bao gồm: Setup Server, Code Bot Riêng, Code Web, Quảng Cáo và Đi Partner Hộ.</p>
+    <h3>3. Thanh Toán & Hoàn Tiền</h3>
+    <ul>
+      <li><strong>Thanh toán:</strong> Khách hàng thanh toán theo thỏa thuận (cọc trước hoặc 100%).</li>
+      <li><strong>Hoàn tiền:</strong> Chỉ hoàn tiền nếu chúng tôi không thể hoàn thành dịch vụ đúng hạn.</li>
+    </ul>
+    <h3>4. Trách Nhiệm Của Khách Hàng</h3>
+    <p>Khách hàng chịu trách nhiệm bảo mật tài khoản và không sử dụng dịch vụ cho mục đích vi phạm pháp luật.</p>
+    <h3>5. Bảo Mật Thông Tin</h3>
+    <p>Chúng tôi cam kết bảo mật thông tin khách hàng và không chia sẻ cho bên thứ ba.</p>
+    <div class="terms-updated">Cập nhật lần cuối: Tháng 11, 2026</div>
+  `;
+
   const adminBtn = document.getElementById('adminBtn');
   const adminOverlay = document.getElementById('adminOverlay');
   const adminPanel = document.getElementById('adminPanel');
@@ -636,76 +646,49 @@
   const addPartnerBtn = document.getElementById('addPartnerBtn');
   const partnersDataJSON = document.getElementById('partnersDataJSON');
 
-  // ═══ Helpers ═══
   function escapeHtml(s){
-    return String(s == null ? '' : s)
-      .replace(/&/g,'&amp;').replace(/</g,'&lt;')
-      .replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+    return String(s == null ? '' : s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
   }
 
-  // Load config
   function loadConfig(){
-    try {
-      const raw = localStorage.getItem(STORAGE_KEY);
-      return raw ? JSON.parse(raw) : {};
-    } catch(e) { return {}; }
+    try { const raw = localStorage.getItem(STORAGE_KEY); return raw ? JSON.parse(raw) : {}; } catch(e) { return {}; }
   }
 
-  // Load partners ban đầu: localStorage → JSON inline → defaults
   function loadInitialPartners(){
     const cfg = loadConfig();
     if (Array.isArray(cfg.partners) && cfg.partners.length) return cfg.partners;
-    try {
-      const inline = JSON.parse(partnersDataJSON.textContent);
-      if (Array.isArray(inline) && inline.length) return inline;
-    } catch(e) {}
+    try { const inline = JSON.parse(partnersDataJSON.textContent); if (Array.isArray(inline) && inline.length) return inline; } catch(e) {}
     return DEFAULT_PARTNERS.slice();
   }
 
-  // Render avatar
   function renderAvatar(avatar){
     if (!avatar || !String(avatar).trim()) return '🤝';
     const a = String(avatar).trim();
-    if (/^https?:\/\//i.test(a)) {
-      return `<img src="${escapeHtml(a)}" alt="" loading="lazy" onerror="this.style.display='none';this.parentNode.textContent='🤝'">`;
-    }
+    if (/^https?:\/\//i.test(a)) return `<img src="${escapeHtml(a)}" alt="" loading="lazy" onerror="this.style.display='none';this.parentNode.textContent='🤝'">`;
     return escapeHtml(a);
   }
 
-  // Render 1 card đối tác
   function renderPartnerCard(p){
     const inner = `
       <div class="partner-avatar">${renderAvatar(p.avatar)}</div>
       <div class="partner-name">${escapeHtml(p.name || 'Đối tác')}</div>
       ${p.link ? '<div class="partner-visit">Truy cập →</div>' : ''}
     `;
-    if (p.link && String(p.link).trim()) {
-      return `<a href="${escapeHtml(p.link)}" target="_blank" rel="noopener noreferrer" class="partner-card">${inner}</a>`;
-    }
+    if (p.link && String(p.link).trim()) return `<a href="${escapeHtml(p.link)}" target="_blank" rel="noopener noreferrer" class="partner-card">${inner}</a>`;
     return `<div class="partner-card">${inner}</div>`;
   }
 
-  // Render grid đối tác
   function renderPartners(items){
     const valid = (items || []).filter(p => p && p.name && p.name.trim());
-    if (partnersGrid) {
-      partnersGrid.innerHTML = valid.length
-        ? valid.map(renderPartnerCard).join('')
-        : '<div class="partners-empty">Chưa có đối tác nào. Thêm trong Admin Panel ⚙</div>';
-    }
-    if (homePartnersPreview) {
-      homePartnersPreview.innerHTML = valid.length
-        ? valid.slice(0, 3).map(renderPartnerCard).join('')
-        : '<div class="partners-empty">Chưa có đối tác nào.</div>';
-    }
+    if (partnersGrid) partnersGrid.innerHTML = valid.length ? valid.map(renderPartnerCard).join('') : '<div class="partners-empty">Chưa có đối tác.</div>';
+    if (homePartnersPreview) homePartnersPreview.innerHTML = valid.length ? valid.slice(0, 3).map(renderPartnerCard).join('') : '<div class="partners-empty">Chưa có đối tác.</div>';
   }
 
-  // Render form admin đối tác (dynamic)
   function renderAdminPartners(){
     if (!partnersAdminList) return;
     partnersAdminList.innerHTML = '';
     if (partnerItems.length === 0) {
-      partnersAdminList.innerHTML = '<div style="text-align:center;color:#999;font-size:12px;padding:16px;">Chưa có đối tác. Nhấn "➕ Thêm đối tác mới" để thêm.</div>';
+      partnersAdminList.innerHTML = '<div style="text-align:center;color:#999;font-size:12px;padding:16px;">Chưa có đối tác.</div>';
       return;
     }
     partnerItems.forEach((p, i) => {
@@ -715,43 +698,28 @@
         <div class="partner-box-header">
           <h5>Đối tác #${i + 1}</h5>
           <div class="partner-actions">
-            <button type="button" class="partner-move-btn" data-move="up" data-idx="${i}" title="Lên" ${i === 0 ? 'disabled' : ''}>⬆</button>
-            <button type="button" class="partner-move-btn" data-move="down" data-idx="${i}" title="Xuống" ${i === partnerItems.length - 1 ? 'disabled' : ''}>⬇</button>
-            <button type="button" class="partner-remove-btn" data-remove="${i}" title="Xóa">🗑</button>
+            <button type="button" class="partner-move-btn" data-move="up" data-idx="${i}" ${i === 0 ? 'disabled' : ''}>⬆</button>
+            <button type="button" class="partner-move-btn" data-move="down" data-idx="${i}" ${i === partnerItems.length - 1 ? 'disabled' : ''}>⬇</button>
+            <button type="button" class="partner-remove-btn" data-remove="${i}">🗑</button>
           </div>
         </div>
-        <div class="admin-field">
-          <label>Tên đối tác</label>
-          <input type="text" data-idx="${i}" data-field="name" value="${escapeHtml(p.name || '')}" placeholder="VD: Gaming VN" maxlength="60">
-        </div>
-        <div class="admin-field">
-          <label>Đại diện (emoji hoặc URL ảnh)</label>
-          <input type="text" data-idx="${i}" data-field="avatar" value="${escapeHtml(p.avatar || '')}" placeholder="🎮 hoặc https://.../logo.png" maxlength="300">
-        </div>
-        <div class="admin-field">
-          <label>Liên kết (URL)</label>
-          <input type="url" data-idx="${i}" data-field="link" value="${escapeHtml(p.link || '')}" placeholder="https://discord.gg/abc">
-        </div>
+        <div class="admin-field"><label>Tên đối tác</label><input type="text" data-idx="${i}" data-field="name" value="${escapeHtml(p.name || '')}"></div>
+        <div class="admin-field"><label>Đại diện (emoji hoặc URL)</label><input type="text" data-idx="${i}" data-field="avatar" value="${escapeHtml(p.avatar || '')}"></div>
+        <div class="admin-field"><label>Liên kết</label><input type="url" data-idx="${i}" data-field="link" value="${escapeHtml(p.link || '')}"></div>
       `;
       partnersAdminList.appendChild(box);
     });
   }
 
-  // Sync input → partnerItems
   partnersAdminList.addEventListener('input', (e) => {
-    const idx = e.target.dataset.idx;
-    const field = e.target.dataset.field;
-    if (idx !== undefined && field) {
-      partnerItems[+idx][field] = e.target.value;
-    }
+    if (e.target.dataset.idx !== undefined && e.target.dataset.field) partnerItems[+e.target.dataset.idx][e.target.dataset.field] = e.target.value;
   });
 
-  // Xóa / Di chuyển
   partnersAdminList.addEventListener('click', (e) => {
     const removeBtn = e.target.closest('[data-remove]');
     if (removeBtn) {
       const idx = +removeBtn.dataset.remove;
-      if (!confirm(`Xóa đối tác "${partnerItems[idx].name || '(chưa đặt tên)'}"?`)) return;
+      if (!confirm('Xóa đối tác này?')) return;
       partnerItems.splice(idx, 1);
       renderAdminPartners();
       return;
@@ -759,58 +727,44 @@
     const moveBtn = e.target.closest('[data-move]');
     if (moveBtn) {
       const idx = +moveBtn.dataset.idx;
-      const dir = moveBtn.dataset.move;
-      if (dir === 'up' && idx > 0) {
-        [partnerItems[idx - 1], partnerItems[idx]] = [partnerItems[idx], partnerItems[idx - 1]];
-        renderAdminPartners();
-      } else if (dir === 'down' && idx < partnerItems.length - 1) {
-        [partnerItems[idx + 1], partnerItems[idx]] = [partnerItems[idx], partnerItems[idx + 1]];
-        renderAdminPartners();
-      }
+      if (moveBtn.dataset.move === 'up' && idx > 0) [partnerItems[idx - 1], partnerItems[idx]] = [partnerItems[idx], partnerItems[idx - 1]];
+      else if (moveBtn.dataset.move === 'down' && idx < partnerItems.length - 1) [partnerItems[idx + 1], partnerItems[idx]] = [partnerItems[idx], partnerItems[idx + 1]];
+      renderAdminPartners();
     }
   });
 
-  // Thêm đối tác
   addPartnerBtn.addEventListener('click', () => {
     partnerItems.push({ name: '', avatar: '🤝', link: '' });
     renderAdminPartners();
-    setTimeout(() => {
-      const boxes = partnersAdminList.querySelectorAll('.admin-partner-box');
-      boxes[boxes.length - 1]?.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      boxes[boxes.length - 1]?.querySelector('input')?.focus();
-    }, 50);
   });
 
-  // Read other fields
   function readForm(){
     const config = {};
     document.querySelectorAll('[data-input]').forEach(input => {
-      const key = input.dataset.input;
       const val = input.value.trim();
-      if (val) config[key] = val;
+      if (val) config[input.dataset.input] = val;
     });
-    // Partners từ runtime
     config.partners = partnerItems.filter(p => p && p.name && p.name.trim());
     return config;
   }
 
-  // Apply config
   function applyConfig(config){
     Object.keys(config).forEach(key => {
-      if (key === 'discordLink' || key === 'partners') return;
-      if (key === 'logoLuna') {
-        document.querySelectorAll('[data-edit="logoLuna"], [data-edit="logoLunaM"]').forEach(el => el.textContent = config[key]);
-        return;
-      }
+      if (key === 'discordLink' || key === 'partners' || key === 'termsContent') return;
+      if (key === 'logoLuna') { document.querySelectorAll('[data-edit="logoLuna"], [data-edit="logoLunaM"]').forEach(el => el.textContent = config[key]); return; }
       const els = document.querySelectorAll(`[data-edit="${key}"]`);
       els.forEach(el => {
         if (el.dataset.html === 'true') el.innerHTML = config[key];
         else el.textContent = config[key];
       });
     });
-    if (config.discordLink) {
-      document.querySelectorAll('[data-link]').forEach(a => a.href = config.discordLink);
-    }
+    
+    // Update terms content
+    const termsEl = document.getElementById('termsContent');
+    if (termsEl) termsEl.innerHTML = config.termsContent || DEFAULT_TERMS;
+
+    if (config.discordLink) document.querySelectorAll('[data-link]').forEach(a => a.href = config.discordLink);
+    
     if (Array.isArray(config.partners)) {
       partnerItems = config.partners.slice();
       renderPartners(partnerItems);
@@ -818,86 +772,59 @@
     }
   }
 
-  // Fill form
   function fillForm(config){
     document.querySelectorAll('[data-input]').forEach(input => {
-      const key = input.dataset.input;
-      if (config[key] !== undefined) input.value = config[key];
+      if (config[input.dataset.input] !== undefined) input.value = config[input.dataset.input];
     });
+    // Fill default terms if empty
+    if (!config.termsContent) {
+      document.querySelector('[data-input="termsContent"]').value = DEFAULT_TERMS.trim();
+    }
     renderAdminPartners();
   }
 
-  // Save
   function saveConfig(){
-    // Đồng bộ partnerItems từ form trước khi save (đảm bảo data mới nhất)
     const config = readForm();
     localStorage.setItem(STORAGE_KEY, JSON.stringify(config));
-    // Update inline JSON luôn (để export dùng)
     partnersDataJSON.textContent = JSON.stringify(config.partners || []);
     applyConfig(config);
     showToast('✅ Đã lưu thay đổi!');
   }
 
-  // Export HTML
   function exportHTML(){
-    // Đảm bảo JSON inline mới nhất
     partnersDataJSON.textContent = JSON.stringify(partnerItems.filter(p => p.name && p.name.trim()));
-    
     const clone = document.documentElement.cloneNode(true);
     clone.querySelectorAll('.admin-panel, .admin-overlay, .admin-btn, .admin-toast, .mobile-menu').forEach(el => el.remove());
     const scripts = clone.querySelectorAll('script');
     scripts.forEach((s, idx) => { if (idx >= 1) s.remove(); });
-    clone.querySelectorAll('[data-input], [data-partner]').forEach(el => {
-      el.removeAttribute('data-input');
-      el.removeAttribute('data-partner');
-    });
-    const now = new Date();
-    const dateStr = `${now.getDate()}-${now.getMonth()+1}-${now.getFullYear()}`;
+    clone.querySelectorAll('[data-input], [data-partner]').forEach(el => { el.removeAttribute('data-input'); el.removeAttribute('data-partner'); });
+    const dateStr = `${new Date().getDate()}-${new Date().getMonth()+1}-${new Date().getFullYear()}`;
     const html = '<!DOCTYPE html>\n' + clone.outerHTML;
     const blob = new Blob([html], { type: 'text/html;charset=utf-8' });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
-    a.href = url;
-    a.download = `index-luna-${dateStr}.html`;
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
+    a.href = url; a.download = `index-luna-${dateStr}.html`;
+    document.body.appendChild(a); a.click(); document.body.removeChild(a);
     URL.revokeObjectURL(url);
     showToast('📥 Đã tải file HTML mới!');
   }
 
   function resetConfig(){
-    if (!confirm('Reset về mặc định? Mọi thay đổi sẽ mất!')) return;
+    if (!confirm('Reset về mặc định?')) return;
     localStorage.removeItem(STORAGE_KEY);
     location.reload();
   }
 
   function showToast(msg){
-    toast.textContent = msg;
-    toast.classList.add('show');
+    toast.textContent = msg; toast.classList.add('show');
     setTimeout(() => toast.classList.remove('show'), 2500);
   }
 
-  // Events
-  adminBtn.addEventListener('click', () => {
-    adminOverlay.classList.add('active');
-    adminPass.value = '';
-    adminErr.style.display = 'none';
-    setTimeout(() => adminPass.focus(), 100);
-  });
-  adminOverlay.addEventListener('click', (e) => {
-    if (e.target === adminOverlay) adminOverlay.classList.remove('active');
-  });
+  adminBtn.addEventListener('click', () => { adminOverlay.classList.add('active'); adminPass.value = ''; adminErr.style.display = 'none'; setTimeout(() => adminPass.focus(), 100); });
+  adminOverlay.addEventListener('click', (e) => { if (e.target === adminOverlay) adminOverlay.classList.remove('active'); });
   loginBtn.addEventListener('click', () => {
-    if (adminPass.value === ADMIN_PASSWORD) {
-      adminOverlay.classList.remove('active');
-      adminPanel.classList.add('active');
-      fillForm(loadConfig());
-    } else {
-      adminErr.style.display = 'block';
-      adminPass.value = '';
-      adminPass.focus();
-    }
+    if (adminPass.value === ADMIN_PASSWORD) { adminOverlay.classList.remove('active'); adminPanel.classList.add('active'); fillForm(loadConfig()); }
+    else { adminErr.style.display = 'block'; adminPass.value = ''; adminPass.focus(); }
   });
   adminPass.addEventListener('keydown', (e) => { if (e.key === 'Enter') loginBtn.click(); });
   adminClose.addEventListener('click', () => adminPanel.classList.remove('active'));
@@ -909,12 +836,12 @@
   partnerItems = loadInitialPartners();
   renderPartners(partnerItems);
   renderAdminPartners();
-
   const initialConfig = loadConfig();
   if (Object.keys(initialConfig).length > 0) applyConfig(initialConfig);
+  else document.getElementById('termsContent').innerHTML = DEFAULT_TERMS;
 
 })();
 </script>
 
 </body>
-</html>
+  </html>
