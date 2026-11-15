@@ -83,7 +83,7 @@
   .section-head h2{font-size:clamp(26px,4vw,38px);font-weight:700;margin-bottom:14px;font-family:'Playfair Display',serif;color:var(--gold-light)}
   .section-head p{color:var(--muted);font-size:15px;letter-spacing:1px}
 
-  /* ═══ CARDS ═══ */
+  /* ═══ CARDS (BẢNG GIÁ) ═══ */
   .grid{display:grid;gap:26px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));max-width:1300px;margin:0 auto;}
   .card{background:linear-gradient(180deg,#1a1a1a 0%,#0f0f0f 100%);border:1px solid var(--border);border-radius:8px;padding:36px 28px;position:relative;transition:.3s;}
   .card:hover{transform:translateY(-8px);border-color:var(--gold);box-shadow:0 15px 40px rgba(212,175,55,.15)}
@@ -132,7 +132,7 @@
   .step-card h4{color:var(--gold-light);font-size:16px;margin-bottom:10px;font-family:'Playfair Display',serif;}
   .step-card p{color:var(--muted);font-size:13px;line-height:1.6;}
 
-  /* ═══ ĐIỀU KHOẢN (TERMS) ═══ */
+  /* ═══ ĐIỀU KHOẢN ═══ */
   .terms-container{max-width:900px;margin:0 auto;background:linear-gradient(180deg,#1a1a1a 0%,#0f0f0f 100%);border:1px solid var(--border);border-radius:12px;padding:50px 40px;box-shadow:0 10px 40px rgba(0,0,0,0.5);}
   .terms-content{color:#ccc;font-size:14px;line-height:1.8;}
   .terms-content h3{color:var(--gold-light);font-family:'Playfair Display',serif;font-size:20px;margin:30px 0 12px;border-bottom:1px solid var(--border);padding-bottom:8px;}
@@ -141,7 +141,6 @@
   .terms-content ul{margin:0 0 20px 24px;}
   .terms-content li{margin-bottom:8px;}
   .terms-content strong{color:var(--gold);}
-  .terms-content a{color:var(--gold);text-decoration:underline;}
   .terms-updated{font-size:12px;color:var(--muted);text-align:center;margin-top:40px;padding-top:20px;border-top:1px dashed var(--border);}
 
   /* ═══ CONTACT ═══ */
@@ -205,34 +204,18 @@
   .admin-field input:focus,.admin-field textarea:focus{border-color:var(--gold);background:rgba(212,175,55,0.05)}
   .admin-field textarea{resize:vertical;min-height:70px}
 
-  .admin-partner-box{background:rgba(212,175,55,.03);border:1px solid var(--border);border-radius:8px;padding:14px;margin-bottom:12px;position:relative;}
-  .partner-box-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;}
-  .partner-box-header h5{color:var(--gold-light);font-size:12px;font-family:'Playfair Display',serif;}
-  .partner-remove-btn{background:rgba(220,38,38,.15);border:1px solid rgba(220,38,38,.4);color:#f87171;width:28px;height:28px;border-radius:6px;cursor:pointer;font-size:14px;transition:.2s;display:grid;place-items:center;}
-  .partner-remove-btn:hover{background:#dc2626;color:#fff;}
-  .partner-actions{display:flex;gap:4px}
-  .partner-move-btn{background:rgba(212,175,55,.1);border:1px solid var(--border);color:var(--gold);width:28px;height:28px;border-radius:6px;cursor:pointer;font-size:12px;transition:.2s;display:grid;place-items:center;}
-  .partner-move-btn:hover{background:var(--gold);color:#000;}
-  .partner-move-btn:disabled{opacity:.3;cursor:not-allowed}
-  .add-partner-btn{width:100%;padding:14px;background:rgba(34,197,94,.1);border:1px dashed rgba(34,197,94,.5);color:#4ade80;border-radius:8px;font-weight:700;font-size:13px;cursor:pointer;transition:.2s;text-transform:uppercase;letter-spacing:1px;}
-  .add-partner-btn:hover{background:rgba(34,197,94,.2);border-color:#22c55e;}
+  .admin-box{background:rgba(212,175,55,.03);border:1px solid var(--border);border-radius:8px;padding:14px;margin-bottom:12px;position:relative;}
+  .admin-box-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;}
+  .admin-box-header h5{color:var(--gold-light);font-size:12px;font-family:'Playfair Display',serif;}
+  .admin-remove-btn{background:rgba(220,38,38,.15);border:1px solid rgba(220,38,38,.4);color:#f87171;width:28px;height:28px;border-radius:6px;cursor:pointer;font-size:14px;transition:.2s;display:grid;place-items:center;}
+  .admin-remove-btn:hover{background:#dc2626;color:#fff;}
+  .admin-actions-small{display:flex;gap:4px}
+  .admin-move-btn{background:rgba(212,175,55,.1);border:1px solid var(--border);color:var(--gold);width:28px;height:28px;border-radius:6px;cursor:pointer;font-size:12px;transition:.2s;display:grid;place-items:center;}
+  .admin-move-btn:hover{background:var(--gold);color:#000;}
+  .admin-move-btn:disabled{opacity:.3;cursor:not-allowed}
+  .add-btn{width:100%;padding:14px;background:rgba(34,197,94,.1);border:1px dashed rgba(34,197,94,.5);color:#4ade80;border-radius:8px;font-weight:700;font-size:13px;cursor:pointer;transition:.2s;text-transform:uppercase;letter-spacing:1px;}
+  .add-btn:hover{background:rgba(34,197,94,.2);border-color:#22c55e;}
   .admin-hint{color:var(--gold);font-size:11px;margin-top:6px;padding:8px 10px;background:rgba(212,175,55,.08);border-radius:4px;border-left:2px solid var(--gold);margin-bottom:12px;}
-
-  /* ═══ ADMIN ORDERS ═══ */
-  .order-card{background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:8px;padding:12px 14px;margin-bottom:10px;font-size:12px;position:relative;}
-  .order-card.pending{border-left:3px solid #f59e0b;}
-  .order-card.completed{border-left:3px solid #22c55e;opacity:0.7;}
-  .order-card.cancelled{border-left:3px solid #ef4444;opacity:0.5;text-decoration:line-through;}
-  .order-header{display:flex;justify-content:space-between;margin-bottom:6px;font-weight:700;color:var(--gold-light);}
-  .order-info{color:#ccc;line-height:1.6;margin-bottom:8px;}
-  .order-info span{color:#fff;}
-  .order-actions{display:flex;gap:6px;}
-  .order-btn{padding:4px 8px;font-size:10px;border-radius:4px;cursor:pointer;border:1px solid var(--border);background:transparent;color:#fff;transition:.2s;}
-  .order-btn:hover{background:rgba(255,255,255,0.1);}
-  .order-btn.complete{color:#4ade80;border-color:rgba(74,222,128,0.4);}
-  .order-btn.complete:hover{background:#22c55e;color:#000;}
-  .order-btn.delete{color:#f87171;border-color:rgba(248,113,113,0.4);}
-  .order-btn.delete:hover{background:#dc2626;color:#fff;}
 
   .admin-actions{display:flex;flex-direction:column;gap:10px;margin-top:20px}
   .admin-actions .btn{width:100%;text-align:center;padding:14px;font-size:13px}
@@ -313,13 +296,8 @@
 
   <section>
     <div class="section-head"><h2>Chúng tôi có gì?</h2><p>Các dịch vụ phổ biến nhất</p></div>
-    <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(220px,1fr))">
-      <div class="card" style="text-align:center"><div class="icon" style="margin:0 auto 20px">🛠️</div><h3>Setup Server</h3><p class="desc">Setup chuyên nghiệp, đẹp, gọn</p></div>
-      <div class="card" style="text-align:center"><div class="icon" style="margin:0 auto 20px">🤖</div><h3>Code Bot</h3><p class="desc">Bot custom theo yêu cầu</p></div>
-      <div class="card" style="text-align:center"><div class="icon" style="margin:0 auto 20px">💻</div><h3>Code Web</h3><p class="desc">Web đẹp, chuẩn SEO, siêu rẻ</p></div>
-      <div class="card" style="text-align:center"><div class="icon" style="margin:0 auto 20px">🚀</div><h3>Boost Server</h3><p class="desc">Buff server siêu tốc, giá rẻ</p></div>
-      <div class="card" style="text-align:center"><div class="icon" style="margin:0 auto 20px">📢</div><h3>Quảng Cáo</h3><p class="desc">Đưa server đến nhiều người</p></div>
-      <div class="card" style="text-align:center"><div class="icon" style="margin:0 auto 20px">🤝</div><h3>Partner</h3><p class="desc">Đi partner hộ uy tín</p></div>
+    <div class="grid" id="homePricingPreview" style="grid-template-columns:repeat(auto-fit,minmax(220px,1fr))">
+      <!-- Sẽ được render bằng JS -->
     </div>
     <div style="text-align:center;margin-top:40px">
       <a class="btn btn-primary" onclick="showPage('pricing')" style="padding:16px 36px">Xem chi tiết & giá →</a>
@@ -339,54 +317,8 @@
 <div class="page" id="page-pricing">
   <section style="padding-top:80px">
     <div class="section-head"><h2>Bảng Giá Dịch Vụ</h2><p>Minh bạch - rõ ràng - không phí ẩn</p></div>
-    <div class="grid">
-      <div class="card">
-        <div class="icon">🛠️</div><h3>Setup Server Discord</h3>
-        <p class="desc">Tạo kênh, role, permission, welcome, auto-mod cơ bản.</p>
-        <div class="price"><span data-edit="priceSetup">10.000đ – 20.000đ</span> <small>/ server</small></div>
-        <ul class="features"><li>Chia kênh & role chuẩn</li><li>Bảo mật & permission</li><li>Welcome + Auto-mod</li><li>Hỗ trợ sau setup</li></ul>
-        <a class="btn btn-ghost" data-link href="https://discord.gg/tKm8J2jKkr" target="_blank" rel="noopener noreferrer">Đặt dịch vụ</a>
-      </div>
-      
-      <div class="card featured">
-        <span class="tag hot">HOT</span><div class="icon">🤖</div><h3>Code Bot Riêng</h3>
-        <p class="desc">Bot theo yêu cầu: kinh tế, mini-game, ticket, verify, custom.</p>
-        <div class="price"><span data-edit="priceBot">50.000đ – 500.000đ</span> <small>/ bot</small></div>
-        <ul class="features"><li>Code theo yêu cầu</li><li>Host miễn phí 1 tháng</li><li>Full source code</li><li>Fix bug bảo hành</li></ul>
-        <a class="btn btn-primary" data-link href="https://discord.gg/tKm8J2jKkr" target="_blank" rel="noopener noreferrer">Đặt làm bot</a>
-      </div>
-
-      <div class="card">
-        <span class="tag new">NEW</span><div class="icon">💻</div><h3>Code Web</h3>
-        <p class="desc">Landing page, web bán hàng, web dịch vụ, portfolio...</p>
-        <div class="price"><span data-edit="priceWeb">5.000đ – 50.000đ</span> <small>/ web</small></div>
-        <ul class="features"><li>Giao diện đẹp, responsive</li><li>Code sạch, chuẩn SEO</li><li>Full source code</li><li>Hỗ trợ 7 ngày</li></ul>
-        <a class="btn btn-ghost" data-link href="https://discord.gg/tKm8J2jKkr" target="_blank" rel="noopener noreferrer">Đặt làm web</a>
-      </div>
-
-      <div class="card featured">
-        <span class="tag hot">HOT</span><div class="icon">🚀</div><h3>Boost Server</h3>
-        <p class="desc">Tăng cường độ hiển thị, mở khóa tính năng độc quyền cho server Discord.</p>
-        <div class="price"><span data-edit="priceBoost">30.000đ</span> <small>/ 2 boost (1 tháng)</small></div>
-        <ul class="features"><li>2 Boost duy trì 1 tháng</li><li>Tăng cấp độ server (Level 2)</li><li>Nâng chất lượng âm thanh (Audio 256kbps)</li><li>Mở khóa icon server & banner</li></ul>
-        <a class="btn btn-primary" data-link href="https://discord.gg/tKm8J2jKkr" target="_blank" rel="noopener noreferrer">Đặt Boost ngay</a>
-      </div>
-
-      <div class="card">
-        <div class="icon">📢</div><h3>Quảng Cáo Server</h3>
-        <p class="desc">Đưa server đến nhiều người dùng hơn qua kênh quảng cáo.</p>
-        <div class="price"><span data-edit="priceAds">0đ – 5.000đ</span> <small>/ server</small></div>
-        <ul class="features"><li>Đăng bài nhiều nơi</li><li>Tiếp cận đúng đối tượng</li><li>Có gói miễn phí</li><li>Báo cáo kết quả</li></ul>
-        <a class="btn btn-ghost" data-link href="https://discord.gg/tKm8J2jKkr" target="_blank" rel="noopener noreferrer">Đặt quảng cáo</a>
-      </div>
-
-      <div class="card">
-        <div class="icon">🤝</div><h3>Đi Partner Hộ</h3>
-        <p class="desc">Đi partner thay bạn đến 5–10 server uy tín.</p>
-        <div class="price"><span data-edit="pricePartner">10.000đ</span> <small>/ 5–10 server</small></div>
-        <ul class="features"><li>Đi partner tận tay</li><li>Server uy tín</li><li>Báo cáo từng server</li><li>Cam kết đủ số lượng</li></ul>
-        <a class="btn btn-ghost" data-link href="https://discord.gg/tKm8J2jKkr" target="_blank" rel="noopener noreferrer">Đặt partner</a>
-      </div>
+    <div class="grid" id="pricingGrid">
+      <!-- Sẽ được render bằng JS -->
     </div>
   </section>
 </div>
@@ -438,14 +370,13 @@
   </section>
 </div>
 
-<!-- 📜 ĐIỀU KHOẢN DỊCH VỤ -->
+<!-- 📜 ĐIỀU KHOẢN -->
 <div class="page" id="page-terms">
   <section style="padding-top:80px">
     <div class="section-head">
       <h2>📜 Điều Khoản Dịch Vụ</h2>
       <p>Vui lòng đọc kỹ trước khi sử dụng dịch vụ</p>
     </div>
-    
     <div class="terms-container">
       <div class="terms-content" id="termsContent" data-edit="termsContent" data-html="true">
         <!-- Nội dung mặc định -->
@@ -497,8 +428,9 @@
   <a onclick="showPage('contact')" style="cursor:pointer; margin: 0 10px;">Liên Hệ</a>
 </footer>
 
-<!-- DỮ LIỆU ĐỐI TÁC INLINE -->
+<!-- DỮ LIỆU INLINE -->
 <script type="application/json" id="partnersDataJSON">[]</script>
+<script type="application/json" id="productsDataJSON">[]</script>
 
 <!-- ADMIN LOGIN -->
 <div class="admin-overlay" id="adminOverlay">
@@ -519,11 +451,19 @@
   </div>
   <div class="admin-body">
     
+    <!-- 🛍️ QUẢN LÝ SẢN PHẨM -->
+    <div class="admin-group">
+      <h4>🛍️ Quản Lý Sản Phẩm (Dịch Vụ)</h4>
+      <div class="admin-hint">💡 Thêm, sửa, xóa các gói dịch vụ. Tick "Nổi bật" để làm nổi bật thẻ. Tag: HOT, NEW.</div>
+      <div id="productsAdminList"></div>
+      <button type="button" class="add-btn" id="addProductBtn">➕ Thêm Sản Phẩm Mới</button>
+    </div>
+
     <!-- 📦 QUẢN LÝ ĐƠN HÀNG -->
     <div class="admin-group">
       <h4>📦 Quản Lý Đơn Hàng</h4>
       <div class="admin-hint">💡 Ghi chú lại các đơn khách đặt qua Discord để dễ theo dõi doanh thu.</div>
-      <button type="button" class="add-partner-btn" id="addOrderBtn" style="background:rgba(212,175,55,.1); border-color:var(--gold); color:var(--gold); margin-bottom:12px;">➕ Thêm Đơn Hàng Mới</button>
+      <button type="button" class="add-btn" id="addOrderBtn" style="background:rgba(212,175,55,.1); border-color:var(--gold); color:var(--gold); margin-bottom:12px;">➕ Thêm Đơn Hàng Mới</button>
       <div id="ordersAdminList"></div>
     </div>
 
@@ -541,21 +481,12 @@
       <div class="admin-field"><label>Thống kê 2</label><input type="text" data-input="stat2"></div>
       <div class="admin-field"><label>Thống kê 3</label><input type="text" data-input="stat3"></div>
     </div>
-    <div class="admin-group">
-      <h4>Bảng Giá</h4>
-      <div class="admin-field"><label>Setup Server</label><input type="text" data-input="priceSetup"></div>
-      <div class="admin-field"><label>Code Bot</label><input type="text" data-input="priceBot"></div>
-      <div class="admin-field"><label>Code Web</label><input type="text" data-input="priceWeb"></div>
-      <div class="admin-field"><label>Boost Server</label><input type="text" data-input="priceBoost"></div>
-      <div class="admin-field"><label>Quảng Cáo</label><input type="text" data-input="priceAds"></div>
-      <div class="admin-field"><label>Partner</label><input type="text" data-input="pricePartner"></div>
-    </div>
-    
+
     <!-- ĐỐI TÁC ĐỘNG -->
     <div class="admin-group">
       <h4>🤝 Quản Lý Đối Tác</h4>
       <div id="partnersAdminList"></div>
-      <button type="button" class="add-partner-btn" id="addPartnerBtn">➕ Thêm đối tác mới</button>
+      <button type="button" class="add-btn" id="addPartnerBtn">➕ Thêm đối tác mới</button>
     </div>
 
     <!-- ĐIỀU KHOẢN -->
@@ -641,7 +572,7 @@
 })();
 </script>
 
-<!-- SCRIPT ADMIN + ĐỐI TÁC + ĐƠN HÀNG -->
+<!-- SCRIPT ADMIN + TOÀN BỘ DỮ LIỆU -->
 <script>
 (function(){
   const ADMIN_PASSWORD = 'luna2025';
@@ -649,6 +580,7 @@
   const ORDERS_KEY = 'luna_club_orders';
   
   let partnerItems = [];
+  let productItems = [];
   let orders = [];
 
   const DEFAULT_PARTNERS = [
@@ -660,20 +592,21 @@
     { name: 'Giveaway Team',   avatar: '🎁', link: 'https://discord.gg/tKm8J2jKkr' }
   ];
 
+  const DEFAULT_PRODUCTS = [
+    { icon: '🛠️', name: 'Setup Server Discord', desc: 'Tạo kênh, role, permission, welcome, auto-mod cơ bản.', price: '10.000đ – 20.000đ', unit: '/ server', features: ['Chia kênh & role chuẩn','Bảo mật & permission','Welcome + Auto-mod','Hỗ trợ sau setup'], tag: '', tagClass: '', featured: false },
+    { icon: '🤖', name: 'Code Bot Riêng', desc: 'Bot theo yêu cầu: kinh tế, mini-game, ticket, verify, custom.', price: '50.000đ – 500.000đ', unit: '/ bot', features: ['Code theo yêu cầu','Host miễn phí 1 tháng','Full source code','Fix bug bảo hành'], tag: 'HOT', tagClass: 'hot', featured: true },
+    { icon: '💻', name: 'Code Web', desc: 'Landing page, web bán hàng, web dịch vụ, portfolio...', price: '5.000đ – 50.000đ', unit: '/ web', features: ['Giao diện đẹp, responsive','Code sạch, chuẩn SEO','Full source code','Hỗ trợ 7 ngày'], tag: 'NEW', tagClass: 'new', featured: false },
+    { icon: '🚀', name: 'Boost Server', desc: 'Tăng cường độ hiển thị, mở khóa tính năng độc quyền.', price: '30.000đ', unit: '/ 2 boost (1 tháng)', features: ['2 Boost duy trì 1 tháng','Tăng cấp độ server (Level 2)','Âm thanh 256kbps','Mở khóa icon & banner'], tag: 'HOT', tagClass: 'hot', featured: true },
+    { icon: '📢', name: 'Quảng Cáo Server', desc: 'Đưa server đến nhiều người dùng hơn qua kênh quảng cáo.', price: '0đ – 5.000đ', unit: '/ server', features: ['Đăng bài nhiều nơi','Tiếp cận đúng đối tượng','Có gói miễn phí','Báo cáo kết quả'], tag: '', tagClass: '', featured: false },
+    { icon: '🤝', name: 'Đi Partner Hộ', desc: 'Đi partner thay bạn đến 5–10 server uy tín.', price: '10.000đ', unit: '/ 5–10 server', features: ['Đi partner tận tay','Server uy tín','Báo cáo từng server','Cam kết đủ số lượng'], tag: '', tagClass: '', featured: false }
+  ];
+
   const DEFAULT_TERMS = `
-    <h3>1. Chấp Nhận Điều Khoản</h3>
-    <p>Khi truy cập và sử dụng dịch vụ tại <strong>THE LUNA CLUB</strong>, bạn đồng ý tuân thủ các điều khoản và điều kiện được nêu tại đây. Nếu không đồng ý, vui lòng ngừng sử dụng dịch vụ.</p>
-    <h3>2. Dịch Vụ Cung Cấp</h3>
-    <p>Chúng tôi cung cấp các dịch vụ liên quan đến Discord và phát triển web bao gồm: Setup Server, Code Bot Riêng, Code Web, Boost Server, Quảng Cáo và Đi Partner Hộ.</p>
-    <h3>3. Thanh Toán & Hoàn Tiền</h3>
-    <ul>
-      <li><strong>Thanh toán:</strong> Khách hàng thanh toán theo thỏa thuận (cọc trước hoặc 100%).</li>
-      <li><strong>Hoàn tiền:</strong> Chỉ hoàn tiền nếu chúng tôi không thể hoàn thành dịch vụ đúng hạn.</li>
-    </ul>
-    <h3>4. Trách Nhiệm Của Khách Hàng</h3>
-    <p>Khách hàng chịu trách nhiệm bảo mật tài khoản và không sử dụng dịch vụ cho mục đích vi phạm pháp luật.</p>
-    <h3>5. Bảo Mật Thông Tin</h3>
-    <p>Chúng tôi cam kết bảo mật thông tin khách hàng và không chia sẻ cho bên thứ ba.</p>
+    <h3>1. Chấp Nhận Điều Khoản</h3><p>Khi truy cập và sử dụng dịch vụ tại <strong>THE LUNA CLUB</strong>, bạn đồng ý tuân thủ các điều khoản và điều kiện được nêu tại đây. Nếu không đồng ý, vui lòng ngừng sử dụng dịch vụ.</p>
+    <h3>2. Dịch Vụ Cung Cấp</h3><p>Chúng tôi cung cấp các dịch vụ liên quan đến Discord và phát triển web bao gồm: Setup Server, Code Bot Riêng, Code Web, Boost Server, Quảng Cáo và Đi Partner Hộ.</p>
+    <h3>3. Thanh Toán & Hoàn Tiền</h3><ul><li><strong>Thanh toán:</strong> Khách hàng thanh toán theo thỏa thuận.</li><li><strong>Hoàn tiền:</strong> Chỉ hoàn tiền nếu chúng tôi không thể hoàn thành dịch vụ đúng hạn.</li></ul>
+    <h3>4. Trách Nhiệm Của Khách Hàng</h3><p>Khách hàng chịu trách nhiệm bảo mật tài khoản và không sử dụng dịch vụ cho mục đích vi phạm pháp luật.</p>
+    <h3>5. Bảo Mật Thông Tin</h3><p>Chúng tôi cam kết bảo mật thông tin khách hàng và không chia sẻ cho bên thứ ba.</p>
     <div class="terms-updated">Cập nhật lần cuối: Tháng 11, 2026</div>
   `;
 
@@ -694,6 +627,12 @@
   const partnersAdminList = document.getElementById('partnersAdminList');
   const addPartnerBtn = document.getElementById('addPartnerBtn');
   const partnersDataJSON = document.getElementById('partnersDataJSON');
+
+  const pricingGrid = document.getElementById('pricingGrid');
+  const homePricingPreview = document.getElementById('homePricingPreview');
+  const productsAdminList = document.getElementById('productsAdminList');
+  const addProductBtn = document.getElementById('addProductBtn');
+  const productsDataJSON = document.getElementById('productsDataJSON');
 
   const ordersAdminList = document.getElementById('ordersAdminList');
   const addOrderBtn = document.getElementById('addOrderBtn');
@@ -717,9 +656,127 @@
     try { const raw = localStorage.getItem(ORDERS_KEY); return raw ? JSON.parse(raw) : []; } catch(e) { return []; }
   }
 
-  function saveOrdersData(){
-    localStorage.setItem(ORDERS_KEY, JSON.stringify(orders));
+  // --- PRODUCTS LOGIC ---
+  function loadInitialProducts(){
+    const cfg = loadConfig();
+    if (Array.isArray(cfg.products) && cfg.products.length) return cfg.products;
+    try { const inline = JSON.parse(productsDataJSON.textContent); if (Array.isArray(inline) && inline.length) return inline; } catch(e) {}
+    return DEFAULT_PRODUCTS.slice();
   }
+
+  function renderProductCard(p, isHomePreview = false){
+    const inner = `
+      ${p.tag ? `<span class="tag ${p.tagClass}">${escapeHtml(p.tag)}</span>` : ''}
+      <div class="icon" style="${isHomePreview ? 'margin:0 auto 20px;' : ''}">${escapeHtml(p.icon || '✦')}</div>
+      <h3 style="${isHomePreview ? 'text-align:center;' : ''}">${escapeHtml(p.name)}</h3>
+      <p class="desc" style="${isHomePreview ? 'text-align:center;' : ''}">${escapeHtml(p.desc)}</p>
+      ${isHomePreview ? '' : `
+        <div class="price">${escapeHtml(p.price)} <small>${escapeHtml(p.unit)}</small></div>
+        <ul class="features">
+          ${(p.features || []).map(f => `<li>${escapeHtml(f)}</li>`).join('')}
+        </ul>
+        <a class="btn ${p.featured ? 'btn-primary' : 'btn-ghost'}" data-link href="https://discord.gg/tKm8J2jKkr" target="_blank" rel="noopener noreferrer">Đặt ${escapeHtml(p.name.split(' ')[0])}</a>
+      `}
+    `;
+    return `<div class="card ${p.featured ? 'featured' : ''}" style="${isHomePreview ? 'text-align:center;' : ''}">${inner}</div>`;
+  }
+
+  function renderProducts(items){
+    const valid = (items || []).filter(p => p && p.name && p.name.trim());
+    if (pricingGrid) pricingGrid.innerHTML = valid.length ? valid.map(p => renderProductCard(p, false)).join('') : '<div class="partners-empty">Chưa có sản phẩm.</div>';
+    if (homePricingPreview) homePricingPreview.innerHTML = valid.length ? valid.slice(0, 6).map(p => renderProductCard(p, true)).join('') : '<div class="partners-empty">Chưa có sản phẩm.</div>';
+  }
+
+  function renderAdminProducts(){
+    if (!productsAdminList) return;
+    productsAdminList.innerHTML = '';
+    if (productItems.length === 0) {
+      productsAdminList.innerHTML = '<div style="text-align:center;color:#999;font-size:12px;padding:16px;">Chưa có sản phẩm.</div>';
+      return;
+    }
+    productItems.forEach((p, i) => {
+      const box = document.createElement('div');
+      box.className = 'admin-box';
+      box.innerHTML = `
+        <div class="admin-box-header">
+          <h5>Sản phẩm #${i + 1}</h5>
+          <div class="admin-actions-small">
+            <button type="button" class="admin-move-btn" data-move="up" data-idx="${i}" ${i === 0 ? 'disabled' : ''}>⬆</button>
+            <button type="button" class="admin-move-btn" data-move="down" data-idx="${i}" ${i === productItems.length - 1 ? 'disabled' : ''}>⬇</button>
+            <button type="button" class="admin-remove-btn" data-remove="${i}">🗑</button>
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 2fr;gap:8px;">
+          <div class="admin-field"><label>Icon</label><input type="text" data-idx="${i}" data-field="icon" value="${escapeHtml(p.icon || '')}" placeholder="🛠️"></div>
+          <div class="admin-field"><label>Tên sản phẩm</label><input type="text" data-idx="${i}" data-field="name" value="${escapeHtml(p.name || '')}"></div>
+        </div>
+        <div class="admin-field"><label>Mô tả ngắn</label><input type="text" data-idx="${i}" data-field="desc" value="${escapeHtml(p.desc || '')}"></div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+          <div class="admin-field"><label>Giá</label><input type="text" data-idx="${i}" data-field="price" value="${escapeHtml(p.price || '')}"></div>
+          <div class="admin-field"><label>Đơn vị</label><input type="text" data-idx="${i}" data-field="unit" value="${escapeHtml(p.unit || '')}" placeholder="/ server"></div>
+        </div>
+        <div class="admin-field">
+          <label>Tính năng (Mỗi dòng 1 ý)</label>
+          <textarea data-idx="${i}" data-field="features" style="min-height:80px;">${(p.features || []).join('\n')}</textarea>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+          <div class="admin-field">
+            <label>Tag</label>
+            <select data-idx="${i}" data-field="tag">
+              <option value="" ${!p.tag ? 'selected' : ''}>Không có</option>
+              <option value="HOT" ${p.tag === 'HOT' ? 'selected' : ''}>HOT (Đỏ)</option>
+              <option value="NEW" ${p.tag === 'NEW' ? 'selected' : ''}>NEW (Xanh)</option>
+            </select>
+          </div>
+          <div class="admin-field">
+            <label>Nổi bật</label>
+            <select data-idx="${i}" data-field="featured">
+              <option value="false" ${!p.featured ? 'selected' : ''}>Bình thường</option>
+              <option value="true" ${p.featured ? 'selected' : ''}>Nổi bật (Viền vàng)</option>
+            </select>
+          </div>
+        </div>
+      `;
+      productsAdminList.appendChild(box);
+    });
+  }
+
+  productsAdminList.addEventListener('input', (e) => {
+    const idx = e.target.dataset.idx;
+    const field = e.target.dataset.field;
+    if (idx !== undefined && field) {
+      let val = e.target.value;
+      if (field === 'features') val = val.split('\n').filter(f => f.trim() !== '');
+      if (field === 'featured') val = val === 'true';
+      if (field === 'tag') {
+        productItems[+idx].tagClass = val === 'HOT' ? 'hot' : (val === 'NEW' ? 'new' : '');
+      }
+      productItems[+idx][field] = val;
+    }
+  });
+
+  productsAdminList.addEventListener('click', (e) => {
+    const removeBtn = e.target.closest('[data-remove]');
+    if (removeBtn) {
+      const idx = +removeBtn.dataset.remove;
+      if (!confirm(`Xóa sản phẩm "${productItems[idx].name}"?`)) return;
+      productItems.splice(idx, 1);
+      renderAdminProducts();
+      return;
+    }
+    const moveBtn = e.target.closest('[data-move]');
+    if (moveBtn) {
+      const idx = +moveBtn.dataset.idx;
+      if (moveBtn.dataset.move === 'up' && idx > 0) [productItems[idx - 1], productItems[idx]] = [productItems[idx], productItems[idx - 1]];
+      else if (moveBtn.dataset.move === 'down' && idx < productItems.length - 1) [productItems[idx + 1], productItems[idx]] = [productItems[idx], productItems[idx + 1]];
+      renderAdminProducts();
+    }
+  });
+
+  addProductBtn.addEventListener('click', () => {
+    productItems.push({ icon: '✦', name: 'Sản phẩm mới', desc: 'Mô tả...', price: '0đ', unit: '/ gói', features: ['Tính năng 1'], tag: '', tagClass: '', featured: false });
+    renderAdminProducts();
+  });
 
   // --- PARTNERS LOGIC ---
   function loadInitialPartners(){
@@ -761,14 +818,14 @@
     }
     partnerItems.forEach((p, i) => {
       const box = document.createElement('div');
-      box.className = 'admin-partner-box';
+      box.className = 'admin-box';
       box.innerHTML = `
-        <div class="partner-box-header">
+        <div class="admin-box-header">
           <h5>Đối tác #${i + 1}</h5>
-          <div class="partner-actions">
-            <button type="button" class="partner-move-btn" data-move="up" data-idx="${i}" ${i === 0 ? 'disabled' : ''}>⬆</button>
-            <button type="button" class="partner-move-btn" data-move="down" data-idx="${i}" ${i === partnerItems.length - 1 ? 'disabled' : ''}>⬇</button>
-            <button type="button" class="partner-remove-btn" data-remove="${i}">🗑</button>
+          <div class="admin-actions-small">
+            <button type="button" class="admin-move-btn" data-move="up" data-idx="${i}" ${i === 0 ? 'disabled' : ''}>⬆</button>
+            <button type="button" class="admin-move-btn" data-move="down" data-idx="${i}" ${i === partnerItems.length - 1 ? 'disabled' : ''}>⬇</button>
+            <button type="button" class="admin-remove-btn" data-remove="${i}">🗑</button>
           </div>
         </div>
         <div class="admin-field"><label>Tên đối tác</label><input type="text" data-idx="${i}" data-field="name" value="${escapeHtml(p.name || '')}"></div>
@@ -814,8 +871,6 @@
       ordersAdminList.innerHTML = '<div style="text-align:center;color:#999;font-size:12px;padding:16px;">Chưa có đơn hàng nào.</div>';
       return;
     }
-    
-    // Hiển thị đơn mới nhất lên đầu
     const sortedOrders = [...orders].sort((a,b) => b.id - a.id);
 
     sortedOrders.forEach(o => {
@@ -828,7 +883,7 @@
 
       box.innerHTML = `
         <div class="order-header">
-          <span>#${o.id} - ${o.name}</span>
+          <span>#${o.id} - ${escapeHtml(o.name)}</span>
           <span style="color:${o.status === 'completed' ? '#22c55e' : o.status === 'cancelled' ? '#ef4444' : '#f59e0b'}">${statusText}</span>
         </div>
         <div class="order-info">
@@ -856,16 +911,13 @@
     const orderIndex = orders.findIndex(o => o.id === id);
     if (orderIndex === -1) return;
 
-    if (action === 'complete') {
-      orders[orderIndex].status = 'completed';
-    } else if (action === 'cancel') {
-      orders[orderIndex].status = 'cancelled';
-    } else if (action === 'remove') {
+    if (action === 'complete') orders[orderIndex].status = 'completed';
+    else if (action === 'cancel') orders[orderIndex].status = 'cancelled';
+    else if (action === 'remove') {
       if (!confirm('Bạn có chắc muốn xóa đơn hàng này vĩnh viễn?')) return;
       orders.splice(orderIndex, 1);
     }
-    
-    saveOrdersData();
+    localStorage.setItem(ORDERS_KEY, JSON.stringify(orders));
     renderAdminOrders();
   });
 
@@ -887,24 +939,15 @@
     const price = parseInt(document.getElementById('ordPrice').value) || 0;
     const note = document.getElementById('ordNote').value.trim();
 
-    if (!name || !service) {
-      alert('Vui lòng nhập Tên khách và Dịch vụ!');
-      return;
-    }
+    if (!name || !service) { alert('Vui lòng nhập Tên khách và Dịch vụ!'); return; }
 
     const newOrder = {
-      id: Date.now(),
-      name,
-      discord,
-      service,
-      price,
-      note,
-      status: 'pending',
+      id: Date.now(), name, discord, service, price, note, status: 'pending',
       date: new Date().toLocaleDateString('vi-VN') + ' ' + new Date().toLocaleTimeString('vi-VN')
     };
 
     orders.push(newOrder);
-    saveOrdersData();
+    localStorage.setItem(ORDERS_KEY, JSON.stringify(orders));
     renderAdminOrders();
     orderModal.classList.remove('active');
     showToast('✅ Đã thêm đơn hàng!');
@@ -918,12 +961,13 @@
       if (val) config[input.dataset.input] = val;
     });
     config.partners = partnerItems.filter(p => p && p.name && p.name.trim());
+    config.products = productItems.filter(p => p && p.name && p.name.trim());
     return config;
   }
 
   function applyConfig(config){
     Object.keys(config).forEach(key => {
-      if (key === 'discordLink' || key === 'partners' || key === 'termsContent') return;
+      if (key === 'discordLink' || key === 'partners' || key === 'products' || key === 'termsContent') return;
       if (key === 'logoLuna') { document.querySelectorAll('[data-edit="logoLuna"], [data-edit="logoLunaM"]').forEach(el => el.textContent = config[key]); return; }
       const els = document.querySelectorAll(`[data-edit="${key}"]`);
       els.forEach(el => {
@@ -942,6 +986,11 @@
       renderPartners(partnerItems);
       renderAdminPartners();
     }
+    if (Array.isArray(config.products)) {
+      productItems = config.products.slice();
+      renderProducts(productItems);
+      renderAdminProducts();
+    }
   }
 
   function fillForm(config){
@@ -952,30 +1001,27 @@
       document.querySelector('[data-input="termsContent"]').value = DEFAULT_TERMS.trim();
     }
     renderAdminPartners();
+    renderAdminProducts();
   }
 
   function saveConfig(){
     const config = readForm();
     localStorage.setItem(STORAGE_KEY, JSON.stringify(config));
     partnersDataJSON.textContent = JSON.stringify(config.partners || []);
+    productsDataJSON.textContent = JSON.stringify(config.products || []);
     applyConfig(config);
     showToast('✅ Đã lưu thay đổi!');
   }
 
   function exportHTML(){
-    // Xóa đơn hàng khỏi file export vì đây là dữ liệu nội bộ của Admin
     partnersDataJSON.textContent = JSON.stringify(partnerItems.filter(p => p.name && p.name.trim()));
+    productsDataJSON.textContent = JSON.stringify(productItems.filter(p => p.name && p.name.trim()));
     const clone = document.documentElement.cloneNode(true);
     
-    // Xóa các thành phần Admin
     clone.querySelectorAll('.admin-panel, .admin-overlay, .admin-btn, .admin-toast, .mobile-menu').forEach(el => el.remove());
-    
-    // Xóa script admin
     const scripts = clone.querySelectorAll('script');
     scripts.forEach((s, idx) => { if (idx >= 1) s.remove(); });
-    
-    // Xóa data attr
-    clone.querySelectorAll('[data-input], [data-partner]').forEach(el => { el.removeAttribute('data-input'); el.removeAttribute('data-partner'); });
+    clone.querySelectorAll('[data-input], [data-partner], [data-product]').forEach(el => { el.removeAttribute('data-input'); el.removeAttribute('data-partner'); el.removeAttribute('data-product'); });
     
     const dateStr = `${new Date().getDate()}-${new Date().getMonth()+1}-${new Date().getFullYear()}`;
     const html = '<!DOCTYPE html>\n' + clone.outerHTML;
@@ -989,7 +1035,7 @@
   }
 
   function resetConfig(){
-    if (!confirm('Reset toàn bộ web về mặc định? Thao tác này sẽ xóa cả đơn hàng!')) return;
+    if (!confirm('Reset toàn bộ web về mặc định? Thao tác này sẽ xóa cả đơn hàng và sản phẩm!')) return;
     localStorage.removeItem(STORAGE_KEY);
     localStorage.removeItem(ORDERS_KEY);
     location.reload();
@@ -1020,10 +1066,13 @@
   resetBtn.addEventListener('click', resetConfig);
 
   // Init
+  productItems = loadInitialProducts();
   partnerItems = loadInitialPartners();
   orders = loadOrders();
   
+  renderProducts(productItems);
   renderPartners(partnerItems);
+  renderAdminProducts();
   renderAdminPartners();
   renderAdminOrders();
   
@@ -1035,4 +1084,4 @@
 </script>
 
 </body>
-</html>
+  </html>
