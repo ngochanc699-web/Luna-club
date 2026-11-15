@@ -100,6 +100,7 @@
   .card .btn{width:100%;text-align:center;display:block;font-size:13px;padding:14px}
   .tag{position:absolute;top:20px;right:20px;padding:6px 12px;border-radius:2px;background:var(--gold);color:#000;font-size:10px;font-weight:800;letter-spacing:1px;}
   .tag.new{background:linear-gradient(135deg,#22c55e,#16a34a);color:#fff;}
+  .tag.hot{background:linear-gradient(135deg,#ef4444,#b91c1c);color:#fff;}
 
   /* ═══ ĐỐI TÁC ═══ */
   .partners-grid{display:grid;gap:24px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));max-width:1100px;margin:0 auto;}
@@ -217,6 +218,22 @@
   .add-partner-btn:hover{background:rgba(34,197,94,.2);border-color:#22c55e;}
   .admin-hint{color:var(--gold);font-size:11px;margin-top:6px;padding:8px 10px;background:rgba(212,175,55,.08);border-radius:4px;border-left:2px solid var(--gold);margin-bottom:12px;}
 
+  /* ═══ ADMIN ORDERS ═══ */
+  .order-card{background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:8px;padding:12px 14px;margin-bottom:10px;font-size:12px;position:relative;}
+  .order-card.pending{border-left:3px solid #f59e0b;}
+  .order-card.completed{border-left:3px solid #22c55e;opacity:0.7;}
+  .order-card.cancelled{border-left:3px solid #ef4444;opacity:0.5;text-decoration:line-through;}
+  .order-header{display:flex;justify-content:space-between;margin-bottom:6px;font-weight:700;color:var(--gold-light);}
+  .order-info{color:#ccc;line-height:1.6;margin-bottom:8px;}
+  .order-info span{color:#fff;}
+  .order-actions{display:flex;gap:6px;}
+  .order-btn{padding:4px 8px;font-size:10px;border-radius:4px;cursor:pointer;border:1px solid var(--border);background:transparent;color:#fff;transition:.2s;}
+  .order-btn:hover{background:rgba(255,255,255,0.1);}
+  .order-btn.complete{color:#4ade80;border-color:rgba(74,222,128,0.4);}
+  .order-btn.complete:hover{background:#22c55e;color:#000;}
+  .order-btn.delete{color:#f87171;border-color:rgba(248,113,113,0.4);}
+  .order-btn.delete:hover{background:#dc2626;color:#fff;}
+
   .admin-actions{display:flex;flex-direction:column;gap:10px;margin-top:20px}
   .admin-actions .btn{width:100%;text-align:center;padding:14px;font-size:13px}
   .btn-danger{background:linear-gradient(135deg,#dc2626,#991b1b);color:#fff}
@@ -272,7 +289,7 @@
   <header class="hero">
     <span class="badge">The Luna Club · Uy tín · Đẳng cấp</span>
     <h1 data-edit="heroTitle" data-html="true">Dịch vụ <span>Discord & Code Web</span> chuyên nghiệp</h1>
-    <p data-edit="heroDesc">Setup server, code bot, code web, quảng cáo và partner hộ — tất cả tại một nơi.</p>
+    <p data-edit="heroDesc">Setup server, code bot, code web, boost server, quảng cáo và partner hộ — tất cả tại một nơi.</p>
     <div class="hero-actions">
       <a class="btn btn-primary" onclick="showPage('pricing')">Xem bảng giá</a>
       <a class="btn btn-ghost" data-link href="https://discord.gg/tKm8J2jKkr" target="_blank" rel="noopener noreferrer">💬 Nơi giao dịch</a>
@@ -295,11 +312,12 @@
   </section>
 
   <section>
-    <div class="section-head"><h2>Chúng tôi có gì?</h2><p>5 dịch vụ phổ biến nhất</p></div>
+    <div class="section-head"><h2>Chúng tôi có gì?</h2><p>Các dịch vụ phổ biến nhất</p></div>
     <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(220px,1fr))">
       <div class="card" style="text-align:center"><div class="icon" style="margin:0 auto 20px">🛠️</div><h3>Setup Server</h3><p class="desc">Setup chuyên nghiệp, đẹp, gọn</p></div>
       <div class="card" style="text-align:center"><div class="icon" style="margin:0 auto 20px">🤖</div><h3>Code Bot</h3><p class="desc">Bot custom theo yêu cầu</p></div>
       <div class="card" style="text-align:center"><div class="icon" style="margin:0 auto 20px">💻</div><h3>Code Web</h3><p class="desc">Web đẹp, chuẩn SEO, siêu rẻ</p></div>
+      <div class="card" style="text-align:center"><div class="icon" style="margin:0 auto 20px">🚀</div><h3>Boost Server</h3><p class="desc">Buff server siêu tốc, giá rẻ</p></div>
       <div class="card" style="text-align:center"><div class="icon" style="margin:0 auto 20px">📢</div><h3>Quảng Cáo</h3><p class="desc">Đưa server đến nhiều người</p></div>
       <div class="card" style="text-align:center"><div class="icon" style="margin:0 auto 20px">🤝</div><h3>Partner</h3><p class="desc">Đi partner hộ uy tín</p></div>
     </div>
@@ -329,13 +347,15 @@
         <ul class="features"><li>Chia kênh & role chuẩn</li><li>Bảo mật & permission</li><li>Welcome + Auto-mod</li><li>Hỗ trợ sau setup</li></ul>
         <a class="btn btn-ghost" data-link href="https://discord.gg/tKm8J2jKkr" target="_blank" rel="noopener noreferrer">Đặt dịch vụ</a>
       </div>
+      
       <div class="card featured">
-        <span class="tag">HOT</span><div class="icon">🤖</div><h3>Code Bot Riêng</h3>
+        <span class="tag hot">HOT</span><div class="icon">🤖</div><h3>Code Bot Riêng</h3>
         <p class="desc">Bot theo yêu cầu: kinh tế, mini-game, ticket, verify, custom.</p>
         <div class="price"><span data-edit="priceBot">50.000đ – 500.000đ</span> <small>/ bot</small></div>
         <ul class="features"><li>Code theo yêu cầu</li><li>Host miễn phí 1 tháng</li><li>Full source code</li><li>Fix bug bảo hành</li></ul>
         <a class="btn btn-primary" data-link href="https://discord.gg/tKm8J2jKkr" target="_blank" rel="noopener noreferrer">Đặt làm bot</a>
       </div>
+
       <div class="card">
         <span class="tag new">NEW</span><div class="icon">💻</div><h3>Code Web</h3>
         <p class="desc">Landing page, web bán hàng, web dịch vụ, portfolio...</p>
@@ -343,6 +363,15 @@
         <ul class="features"><li>Giao diện đẹp, responsive</li><li>Code sạch, chuẩn SEO</li><li>Full source code</li><li>Hỗ trợ 7 ngày</li></ul>
         <a class="btn btn-ghost" data-link href="https://discord.gg/tKm8J2jKkr" target="_blank" rel="noopener noreferrer">Đặt làm web</a>
       </div>
+
+      <div class="card featured">
+        <span class="tag hot">HOT</span><div class="icon">🚀</div><h3>Boost Server</h3>
+        <p class="desc">Tăng cường độ hiển thị, mở khóa tính năng độc quyền cho server Discord.</p>
+        <div class="price"><span data-edit="priceBoost">30.000đ</span> <small>/ 2 boost (1 tháng)</small></div>
+        <ul class="features"><li>2 Boost duy trì 1 tháng</li><li>Tăng cấp độ server (Level 2)</li><li>Nâng chất lượng âm thanh (Audio 256kbps)</li><li>Mở khóa icon server & banner</li></ul>
+        <a class="btn btn-primary" data-link href="https://discord.gg/tKm8J2jKkr" target="_blank" rel="noopener noreferrer">Đặt Boost ngay</a>
+      </div>
+
       <div class="card">
         <div class="icon">📢</div><h3>Quảng Cáo Server</h3>
         <p class="desc">Đưa server đến nhiều người dùng hơn qua kênh quảng cáo.</p>
@@ -350,6 +379,7 @@
         <ul class="features"><li>Đăng bài nhiều nơi</li><li>Tiếp cận đúng đối tượng</li><li>Có gói miễn phí</li><li>Báo cáo kết quả</li></ul>
         <a class="btn btn-ghost" data-link href="https://discord.gg/tKm8J2jKkr" target="_blank" rel="noopener noreferrer">Đặt quảng cáo</a>
       </div>
+
       <div class="card">
         <div class="icon">🤝</div><h3>Đi Partner Hộ</h3>
         <p class="desc">Đi partner thay bạn đến 5–10 server uy tín.</p>
@@ -418,29 +448,20 @@
     
     <div class="terms-container">
       <div class="terms-content" id="termsContent" data-edit="termsContent" data-html="true">
-        <!-- Nội dung mặc định (sẽ bị thay thế nếu sửa trong Admin) -->
+        <!-- Nội dung mặc định -->
         <h3>1. Chấp Nhận Điều Khoản</h3>
         <p>Khi truy cập và sử dụng dịch vụ tại <strong>THE LUNA CLUB</strong>, bạn đồng ý tuân thủ các điều khoản và điều kiện được nêu tại đây. Nếu không đồng ý, vui lòng ngừng sử dụng dịch vụ.</p>
-        
         <h3>2. Dịch Vụ Cung Cấp</h3>
-        <p>Chúng tôi cung cấp các dịch vụ liên quan đến Discord và phát triển web bao gồm: Setup Server, Code Bot Riêng, Code Web, Quảng Cáo và Đi Partner Hộ. Chúng tôi có quyền từ chối cung cấp dịch vụ nếu yêu cầu vi phạm pháp luật hoặc Điều khoản của Discord.</p>
-        
+        <p>Chúng tôi cung cấp các dịch vụ liên quan đến Discord và phát triển web bao gồm: Setup Server, Code Bot Riêng, Code Web, Boost Server, Quảng Cáo và Đi Partner Hộ.</p>
         <h3>3. Thanh Toán & Hoàn Tiền</h3>
         <ul>
-          <li><strong>Thanh toán:</strong> Khách hàng thanh toán theo thỏa thuận (thường là cọc trước hoặc thanh toán 100% trước khi làm).</li>
-          <li><strong>Hoàn tiền:</strong> Chỉ hoàn tiền nếu chúng tôi không thể hoàn thành dịch vụ đúng hạn cam kết. Không hoàn tiền sau khi sản phẩm đã bàn giao và nghiệm thu.</li>
-          <li><strong>Bảo hành:</strong> Tùy vào từng gói dịch vụ (VD: bot được bảo hành fix bug 1 tháng, web được hỗ trợ chỉnh sửa 7 ngày).</li>
+          <li><strong>Thanh toán:</strong> Khách hàng thanh toán theo thỏa thuận (cọc trước hoặc 100%).</li>
+          <li><strong>Hoàn tiền:</strong> Chỉ hoàn tiền nếu chúng tôi không thể hoàn thành dịch vụ đúng hạn.</li>
         </ul>
-
         <h3>4. Trách Nhiệm Của Khách Hàng</h3>
-        <p>Khách hàng chịu trách nhiệm về tính chính xác của thông tin cung cấp và tự bảo mật tài khoản Discord/Web của mình. Không sử dụng dịch vụ cho các mục đích lừa đảo, phá hoại, hoặc vi phạm pháp luật Việt Nam.</p>
-
+        <p>Khách hàng chịu trách nhiệm bảo mật tài khoản và không sử dụng dịch vụ cho mục đích vi phạm pháp luật.</p>
         <h3>5. Bảo Mật Thông Tin</h3>
-        <p>Chúng tôi cam kết bảo mật thông tin cá nhân và tài khoản của khách hàng. Thông tin chỉ được sử dụng để thực hiện dịch vụ và sẽ không bán hoặc chia sẻ cho bên thứ ba khi chưa có sự đồng ý.</p>
-
-        <h3>6. Thay Đổi Điều Khoản</h3>
-        <p>THE LUNA CLUB có quyền thay đổi, chỉnh sửa các điều khoản này bất kỳ lúc nào mà không cần báo trước. Việc tiếp tục sử dụng dịch vụ sau khi có thay đổi đồng nghĩa với việc bạn chấp nhận các điều khoản mới.</p>
-        
+        <p>Chúng tôi cam kết bảo mật thông tin khách hàng và không chia sẻ cho bên thứ ba.</p>
         <div class="terms-updated">Cập nhật lần cuối: Tháng 11, 2026</div>
       </div>
     </div>
@@ -497,6 +518,15 @@
     <button class="admin-close" id="adminClose">✕</button>
   </div>
   <div class="admin-body">
+    
+    <!-- 📦 QUẢN LÝ ĐƠN HÀNG -->
+    <div class="admin-group">
+      <h4>📦 Quản Lý Đơn Hàng</h4>
+      <div class="admin-hint">💡 Ghi chú lại các đơn khách đặt qua Discord để dễ theo dõi doanh thu.</div>
+      <button type="button" class="add-partner-btn" id="addOrderBtn" style="background:rgba(212,175,55,.1); border-color:var(--gold); color:var(--gold); margin-bottom:12px;">➕ Thêm Đơn Hàng Mới</button>
+      <div id="ordersAdminList"></div>
+    </div>
+
     <div class="admin-group">
       <h4>Thông Tin Chung</h4>
       <div class="admin-field"><label>Tên Logo</label><input type="text" data-input="logoLuna"></div>
@@ -516,6 +546,7 @@
       <div class="admin-field"><label>Setup Server</label><input type="text" data-input="priceSetup"></div>
       <div class="admin-field"><label>Code Bot</label><input type="text" data-input="priceBot"></div>
       <div class="admin-field"><label>Code Web</label><input type="text" data-input="priceWeb"></div>
+      <div class="admin-field"><label>Boost Server</label><input type="text" data-input="priceBoost"></div>
       <div class="admin-field"><label>Quảng Cáo</label><input type="text" data-input="priceAds"></div>
       <div class="admin-field"><label>Partner</label><input type="text" data-input="pricePartner"></div>
     </div>
@@ -523,7 +554,6 @@
     <!-- ĐỐI TÁC ĐỘNG -->
     <div class="admin-group">
       <h4>🤝 Quản Lý Đối Tác</h4>
-      <div class="admin-hint">💡 Nhập thông tin và nhấn Thêm đối tác.</div>
       <div id="partnersAdminList"></div>
       <button type="button" class="add-partner-btn" id="addPartnerBtn">➕ Thêm đối tác mới</button>
     </div>
@@ -531,7 +561,6 @@
     <!-- ĐIỀU KHOẢN -->
     <div class="admin-group">
       <h4>📜 Nội Dung Điều Khoản</h4>
-      <div class="admin-hint">💡 Có thể dùng thẻ HTML cơ bản như &lt;h3&gt;, &lt;p&gt;, &lt;ul&gt;, &lt;li&gt;, &lt;strong&gt; để định dạng.</div>
       <div class="admin-field">
         <label>Nội dung trang Điều Khoản</label>
         <textarea data-input="termsContent" style="min-height: 200px;"></textarea>
@@ -546,6 +575,22 @@
       <button class="btn btn-success" id="saveBtn">💾 Lưu Thay Đổi</button>
       <button class="btn btn-primary" id="exportBtn">📥 Tải HTML Mới</button>
       <button class="btn btn-danger" id="resetBtn">🗑 Reset Về Mặc Định</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL THÊM ĐƠN HÀNG -->
+<div class="admin-overlay" id="orderModal" style="z-index:1002;">
+  <div class="admin-login">
+    <h2>➕ Thêm Đơn Hàng</h2>
+    <div class="admin-field"><label>Tên khách hàng</label><input type="text" id="ordName" placeholder="VD: Nguyễn Văn A"></div>
+    <div class="admin-field"><label>Discord Tag</label><input type="text" id="ordDiscord" placeholder="VD: user#1234"></div>
+    <div class="admin-field"><label>Dịch vụ đặt</label><input type="text" id="ordService" placeholder="VD: Boost 2 bút"></div>
+    <div class="admin-field"><label>Số tiền (VNĐ)</label><input type="number" id="ordPrice" placeholder="VD: 30000"></div>
+    <div class="admin-field"><label>Ghi chú thêm</label><textarea id="ordNote" placeholder="Ghi chú..." style="min-height:60px"></textarea></div>
+    <div style="display:flex;gap:10px;margin-top:20px">
+      <button class="btn btn-primary" id="saveOrderBtn" style="flex:1">Lưu Đơn</button>
+      <button class="btn btn-ghost" id="closeOrderModal" style="flex:1">Hủy</button>
     </div>
   </div>
 </div>
@@ -596,12 +641,15 @@
 })();
 </script>
 
-<!-- SCRIPT ADMIN + ĐỐI TÁC -->
+<!-- SCRIPT ADMIN + ĐỐI TÁC + ĐƠN HÀNG -->
 <script>
 (function(){
   const ADMIN_PASSWORD = 'luna2025';
   const STORAGE_KEY = 'luna_club_config';
+  const ORDERS_KEY = 'luna_club_orders';
+  
   let partnerItems = [];
+  let orders = [];
 
   const DEFAULT_PARTNERS = [
     { name: 'Gaming VN',       avatar: '🎮', link: 'https://discord.gg/tKm8J2jKkr' },
@@ -616,7 +664,7 @@
     <h3>1. Chấp Nhận Điều Khoản</h3>
     <p>Khi truy cập và sử dụng dịch vụ tại <strong>THE LUNA CLUB</strong>, bạn đồng ý tuân thủ các điều khoản và điều kiện được nêu tại đây. Nếu không đồng ý, vui lòng ngừng sử dụng dịch vụ.</p>
     <h3>2. Dịch Vụ Cung Cấp</h3>
-    <p>Chúng tôi cung cấp các dịch vụ liên quan đến Discord và phát triển web bao gồm: Setup Server, Code Bot Riêng, Code Web, Quảng Cáo và Đi Partner Hộ.</p>
+    <p>Chúng tôi cung cấp các dịch vụ liên quan đến Discord và phát triển web bao gồm: Setup Server, Code Bot Riêng, Code Web, Boost Server, Quảng Cáo và Đi Partner Hộ.</p>
     <h3>3. Thanh Toán & Hoàn Tiền</h3>
     <ul>
       <li><strong>Thanh toán:</strong> Khách hàng thanh toán theo thỏa thuận (cọc trước hoặc 100%).</li>
@@ -640,20 +688,40 @@
   const exportBtn = document.getElementById('exportBtn');
   const resetBtn = document.getElementById('resetBtn');
   const toast = document.getElementById('toast');
+  
   const partnersGrid = document.getElementById('partnersGrid');
   const homePartnersPreview = document.getElementById('homePartnersPreview');
   const partnersAdminList = document.getElementById('partnersAdminList');
   const addPartnerBtn = document.getElementById('addPartnerBtn');
   const partnersDataJSON = document.getElementById('partnersDataJSON');
 
+  const ordersAdminList = document.getElementById('ordersAdminList');
+  const addOrderBtn = document.getElementById('addOrderBtn');
+  const orderModal = document.getElementById('orderModal');
+  const closeOrderModal = document.getElementById('closeOrderModal');
+  const saveOrderBtn = document.getElementById('saveOrderBtn');
+
   function escapeHtml(s){
     return String(s == null ? '' : s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+
+  function formatMoney(amount){
+    return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(amount);
   }
 
   function loadConfig(){
     try { const raw = localStorage.getItem(STORAGE_KEY); return raw ? JSON.parse(raw) : {}; } catch(e) { return {}; }
   }
 
+  function loadOrders(){
+    try { const raw = localStorage.getItem(ORDERS_KEY); return raw ? JSON.parse(raw) : []; } catch(e) { return []; }
+  }
+
+  function saveOrdersData(){
+    localStorage.setItem(ORDERS_KEY, JSON.stringify(orders));
+  }
+
+  // --- PARTNERS LOGIC ---
   function loadInitialPartners(){
     const cfg = loadConfig();
     if (Array.isArray(cfg.partners) && cfg.partners.length) return cfg.partners;
@@ -738,6 +806,111 @@
     renderAdminPartners();
   });
 
+  // --- ORDERS LOGIC ---
+  function renderAdminOrders(){
+    if (!ordersAdminList) return;
+    ordersAdminList.innerHTML = '';
+    if (orders.length === 0) {
+      ordersAdminList.innerHTML = '<div style="text-align:center;color:#999;font-size:12px;padding:16px;">Chưa có đơn hàng nào.</div>';
+      return;
+    }
+    
+    // Hiển thị đơn mới nhất lên đầu
+    const sortedOrders = [...orders].sort((a,b) => b.id - a.id);
+
+    sortedOrders.forEach(o => {
+      const box = document.createElement('div');
+      box.className = `order-card ${o.status}`;
+      
+      let statusText = 'Chờ xử lý';
+      if (o.status === 'completed') statusText = '✅ Hoàn thành';
+      if (o.status === 'cancelled') statusText = '❌ Đã hủy';
+
+      box.innerHTML = `
+        <div class="order-header">
+          <span>#${o.id} - ${o.name}</span>
+          <span style="color:${o.status === 'completed' ? '#22c55e' : o.status === 'cancelled' ? '#ef4444' : '#f59e0b'}">${statusText}</span>
+        </div>
+        <div class="order-info">
+          <div>Dịch vụ: <span>${escapeHtml(o.service)}</span></div>
+          <div>Giá: <span style="color:var(--gold)">${formatMoney(o.price)}</span></div>
+          ${o.discord ? `<div>Discord: <span>${escapeHtml(o.discord)}</span></div>` : ''}
+          ${o.note ? `<div>Ghi chú: <span>${escapeHtml(o.note)}</span></div>` : ''}
+          <div style="font-size:10px;color:#777;margin-top:4px;">${o.date}</div>
+        </div>
+        <div class="order-actions">
+          ${o.status === 'pending' ? `<button class="order-btn complete" data-oid="${o.id}" data-action="complete">✅ Duyệt</button>` : ''}
+          ${o.status === 'pending' ? `<button class="order-btn delete" data-oid="${o.id}" data-action="cancel">❌ Hủy</button>` : ''}
+          <button class="order-btn delete" data-oid="${o.id}" data-action="remove" style="margin-left:auto">🗑 Xóa</button>
+        </div>
+      `;
+      ordersAdminList.appendChild(box);
+    });
+  }
+
+  ordersAdminList.addEventListener('click', (e) => {
+    const btn = e.target.closest('[data-action]');
+    if (!btn) return;
+    const id = +btn.dataset.oid;
+    const action = btn.dataset.action;
+    const orderIndex = orders.findIndex(o => o.id === id);
+    if (orderIndex === -1) return;
+
+    if (action === 'complete') {
+      orders[orderIndex].status = 'completed';
+    } else if (action === 'cancel') {
+      orders[orderIndex].status = 'cancelled';
+    } else if (action === 'remove') {
+      if (!confirm('Bạn có chắc muốn xóa đơn hàng này vĩnh viễn?')) return;
+      orders.splice(orderIndex, 1);
+    }
+    
+    saveOrdersData();
+    renderAdminOrders();
+  });
+
+  addOrderBtn.addEventListener('click', () => {
+    document.getElementById('ordName').value = '';
+    document.getElementById('ordDiscord').value = '';
+    document.getElementById('ordService').value = '';
+    document.getElementById('ordPrice').value = '';
+    document.getElementById('ordNote').value = '';
+    orderModal.classList.add('active');
+  });
+
+  closeOrderModal.addEventListener('click', () => orderModal.classList.remove('active'));
+
+  saveOrderBtn.addEventListener('click', () => {
+    const name = document.getElementById('ordName').value.trim();
+    const discord = document.getElementById('ordDiscord').value.trim();
+    const service = document.getElementById('ordService').value.trim();
+    const price = parseInt(document.getElementById('ordPrice').value) || 0;
+    const note = document.getElementById('ordNote').value.trim();
+
+    if (!name || !service) {
+      alert('Vui lòng nhập Tên khách và Dịch vụ!');
+      return;
+    }
+
+    const newOrder = {
+      id: Date.now(),
+      name,
+      discord,
+      service,
+      price,
+      note,
+      status: 'pending',
+      date: new Date().toLocaleDateString('vi-VN') + ' ' + new Date().toLocaleTimeString('vi-VN')
+    };
+
+    orders.push(newOrder);
+    saveOrdersData();
+    renderAdminOrders();
+    orderModal.classList.remove('active');
+    showToast('✅ Đã thêm đơn hàng!');
+  });
+
+  // --- FORM & EXPORT LOGIC ---
   function readForm(){
     const config = {};
     document.querySelectorAll('[data-input]').forEach(input => {
@@ -759,7 +932,6 @@
       });
     });
     
-    // Update terms content
     const termsEl = document.getElementById('termsContent');
     if (termsEl) termsEl.innerHTML = config.termsContent || DEFAULT_TERMS;
 
@@ -776,7 +948,6 @@
     document.querySelectorAll('[data-input]').forEach(input => {
       if (config[input.dataset.input] !== undefined) input.value = config[input.dataset.input];
     });
-    // Fill default terms if empty
     if (!config.termsContent) {
       document.querySelector('[data-input="termsContent"]').value = DEFAULT_TERMS.trim();
     }
@@ -792,12 +963,20 @@
   }
 
   function exportHTML(){
+    // Xóa đơn hàng khỏi file export vì đây là dữ liệu nội bộ của Admin
     partnersDataJSON.textContent = JSON.stringify(partnerItems.filter(p => p.name && p.name.trim()));
     const clone = document.documentElement.cloneNode(true);
+    
+    // Xóa các thành phần Admin
     clone.querySelectorAll('.admin-panel, .admin-overlay, .admin-btn, .admin-toast, .mobile-menu').forEach(el => el.remove());
+    
+    // Xóa script admin
     const scripts = clone.querySelectorAll('script');
     scripts.forEach((s, idx) => { if (idx >= 1) s.remove(); });
+    
+    // Xóa data attr
     clone.querySelectorAll('[data-input], [data-partner]').forEach(el => { el.removeAttribute('data-input'); el.removeAttribute('data-partner'); });
+    
     const dateStr = `${new Date().getDate()}-${new Date().getMonth()+1}-${new Date().getFullYear()}`;
     const html = '<!DOCTYPE html>\n' + clone.outerHTML;
     const blob = new Blob([html], { type: 'text/html;charset=utf-8' });
@@ -810,8 +989,9 @@
   }
 
   function resetConfig(){
-    if (!confirm('Reset về mặc định?')) return;
+    if (!confirm('Reset toàn bộ web về mặc định? Thao tác này sẽ xóa cả đơn hàng!')) return;
     localStorage.removeItem(STORAGE_KEY);
+    localStorage.removeItem(ORDERS_KEY);
     location.reload();
   }
 
@@ -822,20 +1002,31 @@
 
   adminBtn.addEventListener('click', () => { adminOverlay.classList.add('active'); adminPass.value = ''; adminErr.style.display = 'none'; setTimeout(() => adminPass.focus(), 100); });
   adminOverlay.addEventListener('click', (e) => { if (e.target === adminOverlay) adminOverlay.classList.remove('active'); });
+  
   loginBtn.addEventListener('click', () => {
-    if (adminPass.value === ADMIN_PASSWORD) { adminOverlay.classList.remove('active'); adminPanel.classList.add('active'); fillForm(loadConfig()); }
+    if (adminPass.value === ADMIN_PASSWORD) { 
+      adminOverlay.classList.remove('active'); 
+      adminPanel.classList.add('active'); 
+      fillForm(loadConfig()); 
+    }
     else { adminErr.style.display = 'block'; adminPass.value = ''; adminPass.focus(); }
   });
+  
   adminPass.addEventListener('keydown', (e) => { if (e.key === 'Enter') loginBtn.click(); });
   adminClose.addEventListener('click', () => adminPanel.classList.remove('active'));
+  
   saveBtn.addEventListener('click', saveConfig);
   exportBtn.addEventListener('click', exportHTML);
   resetBtn.addEventListener('click', resetConfig);
 
   // Init
   partnerItems = loadInitialPartners();
+  orders = loadOrders();
+  
   renderPartners(partnerItems);
   renderAdminPartners();
+  renderAdminOrders();
+  
   const initialConfig = loadConfig();
   if (Object.keys(initialConfig).length > 0) applyConfig(initialConfig);
   else document.getElementById('termsContent').innerHTML = DEFAULT_TERMS;
