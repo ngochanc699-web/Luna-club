@@ -176,7 +176,7 @@
   body{-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;}
   input,textarea{-webkit-user-select:text;user-select:text;}
 
-  /* ═══ ADMIN ═══ */
+  /* ═══ ADMIN UI ═══ */
   .admin-btn{position:fixed;bottom:28px;left:28px;z-index:99;width:48px;height:48px;border-radius:50%;background:rgba(20,20,20,0.9);border:1px solid var(--gold);display:grid;place-items:center;font-size:20px;color:var(--gold);cursor:pointer;transition:.3s;backdrop-filter:blur(10px);}
   .admin-btn:hover{transform:scale(1.1);box-shadow:0 0 20px rgba(212,175,55,.5)}
   .admin-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:1000;display:none;align-items:center;justify-content:center;backdrop-filter:blur(8px);padding:20px;}
@@ -223,13 +223,33 @@
   .btn-success{background:linear-gradient(135deg,#22c55e,#16a34a);color:#fff}
   .admin-toast{position:fixed;bottom:30px;left:50%;transform:translateX(-50%) translateY(100px);background:rgba(34,197,94,0.95);color:#fff;padding:14px 28px;border-radius:8px;font-weight:600;font-size:14px;z-index:9999;transition:.3s;box-shadow:0 10px 30px rgba(34,197,94,.4);}
   .admin-toast.show{transform:translateX(-50%) translateY(0)}
+
+  /* ═══ ORDERS UI ═══ */
+  .order-card{background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:8px;padding:12px 14px;margin-bottom:10px;font-size:12px;position:relative;}
+  .order-card.pending{border-left:3px solid #f59e0b;}
+  .order-card.completed{border-left:3px solid #22c55e;opacity:0.7;}
+  .order-card.cancelled{border-left:3px solid #ef4444;opacity:0.5;text-decoration:line-through;}
+  .order-header{display:flex;justify-content:space-between;margin-bottom:6px;font-weight:700;color:var(--gold-light);}
+  .order-info{color:#ccc;line-height:1.6;margin-bottom:8px;}
+  .order-info span{color:#fff;}
+  .order-actions{display:flex;gap:6px;}
+  .order-btn{padding:4px 8px;font-size:10px;border-radius:4px;cursor:pointer;border:1px solid var(--border);background:transparent;color:#fff;transition:.2s;}
+  .order-btn:hover{background:rgba(255,255,255,0.1);}
+  .order-btn.complete{color:#4ade80;border-color:rgba(74,222,128,0.4);}
+  .order-btn.complete:hover{background:#22c55e;color:#000;}
+  .order-btn.delete{color:#f87171;border-color:rgba(248,113,113,0.4);}
+  .order-btn.delete:hover{background:#dc2626;color:#fff;}
 </style>
 </head>
 <body>
 
+<!-- NÚT ADMIN (Sẽ bị xóa khi Export) -->
 <div class="admin-btn" id="adminBtn" title="Admin Panel">⚙</div>
+
+<!-- NÚT DISCORD NỔI -->
 <a class="float-discord" data-link href="https://discord.gg/tKm8J2jKkr" target="_blank" rel="noopener noreferrer">💬</a>
 
+<!-- NAVBAR -->
 <nav>
   <div class="logo" onclick="showPage('home')">
     <span class="the">The</span>
@@ -267,7 +287,7 @@
   </div>
 </div>
 
-<!-- TRANG CHỦ -->
+<!-- CÁC TRANG -->
 <div class="page active" id="page-home">
   <header class="hero">
     <span class="badge">The Luna Club · Uy tín · Đẳng cấp</span>
@@ -283,7 +303,6 @@
       <div class="stat"><h3 data-edit="stat3">150+</h3><p>Web đã hoàn thiện</p></div>
     </div>
   </header>
-
   <section>
     <div class="trade-banner">
       <div class="text">
@@ -293,17 +312,13 @@
       <a class="btn btn-primary" data-link href="https://discord.gg/tKm8J2jKkr" target="_blank" rel="noopener noreferrer">Tham gia ngay →</a>
     </div>
   </section>
-
   <section>
     <div class="section-head"><h2>Chúng tôi có gì?</h2><p>Các dịch vụ phổ biến nhất</p></div>
-    <div class="grid" id="homePricingPreview" style="grid-template-columns:repeat(auto-fit,minmax(220px,1fr))">
-      <!-- Sẽ được render bằng JS -->
-    </div>
+    <div class="grid" id="homePricingPreview" style="grid-template-columns:repeat(auto-fit,minmax(220px,1fr))"></div>
     <div style="text-align:center;margin-top:40px">
       <a class="btn btn-primary" onclick="showPage('pricing')" style="padding:16px 36px">Xem chi tiết & giá →</a>
     </div>
   </section>
-
   <section>
     <div class="section-head"><h2>Đối Tác Của Chúng Tôi</h2><p>Click vào đối tác để truy cập ngay</p></div>
     <div class="partners-grid" id="homePartnersPreview"></div>
@@ -313,17 +328,13 @@
   </section>
 </div>
 
-<!-- BẢNG GIÁ -->
 <div class="page" id="page-pricing">
   <section style="padding-top:80px">
     <div class="section-head"><h2>Bảng Giá Dịch Vụ</h2><p>Minh bạch - rõ ràng - không phí ẩn</p></div>
-    <div class="grid" id="pricingGrid">
-      <!-- Sẽ được render bằng JS -->
-    </div>
+    <div class="grid" id="pricingGrid"></div>
   </section>
 </div>
 
-<!-- HƯỚNG DẪN -->
 <div class="page" id="page-guide">
   <section style="padding-top:80px">
     <div class="section-head"><h2>Quy Trình Đặt Hàng</h2><p>Chỉ mất 2 phút để bắt đầu</p></div>
@@ -339,7 +350,6 @@
   </section>
 </div>
 
-<!-- ĐỐI TÁC -->
 <div class="page" id="page-partners">
   <section style="padding-top:80px">
     <div class="section-head">
@@ -347,7 +357,6 @@
       <p>Click vào đối tác để bay thẳng tới server / website của họ</p>
     </div>
     <div class="partners-grid" id="partnersGrid"></div>
-
     <div style="max-width:900px;margin:60px auto 0">
       <div class="trade-banner" style="background:linear-gradient(90deg,rgba(212,175,55,.15) 0%,transparent 100%)">
         <div class="text">
@@ -357,7 +366,6 @@
         <a class="btn btn-primary" data-link href="https://discord.gg/tKm8J2jKkr" target="_blank" rel="noopener noreferrer">Liên hệ hợp tác →</a>
       </div>
     </div>
-
     <div class="section-head" style="margin-top:60px">
       <h2 style="font-size:24px">Quyền Lợi Đối Tác</h2>
     </div>
@@ -370,7 +378,6 @@
   </section>
 </div>
 
-<!-- 📜 ĐIỀU KHOẢN -->
 <div class="page" id="page-terms">
   <section style="padding-top:80px">
     <div class="section-head">
@@ -378,28 +385,11 @@
       <p>Vui lòng đọc kỹ trước khi sử dụng dịch vụ</p>
     </div>
     <div class="terms-container">
-      <div class="terms-content" id="termsContent" data-edit="termsContent" data-html="true">
-        <!-- Nội dung mặc định -->
-        <h3>1. Chấp Nhận Điều Khoản</h3>
-        <p>Khi truy cập và sử dụng dịch vụ tại <strong>THE LUNA CLUB</strong>, bạn đồng ý tuân thủ các điều khoản và điều kiện được nêu tại đây. Nếu không đồng ý, vui lòng ngừng sử dụng dịch vụ.</p>
-        <h3>2. Dịch Vụ Cung Cấp</h3>
-        <p>Chúng tôi cung cấp các dịch vụ liên quan đến Discord và phát triển web bao gồm: Setup Server, Code Bot Riêng, Code Web, Boost Server, Quảng Cáo và Đi Partner Hộ.</p>
-        <h3>3. Thanh Toán & Hoàn Tiền</h3>
-        <ul>
-          <li><strong>Thanh toán:</strong> Khách hàng thanh toán theo thỏa thuận (cọc trước hoặc 100%).</li>
-          <li><strong>Hoàn tiền:</strong> Chỉ hoàn tiền nếu chúng tôi không thể hoàn thành dịch vụ đúng hạn.</li>
-        </ul>
-        <h3>4. Trách Nhiệm Của Khách Hàng</h3>
-        <p>Khách hàng chịu trách nhiệm bảo mật tài khoản và không sử dụng dịch vụ cho mục đích vi phạm pháp luật.</p>
-        <h3>5. Bảo Mật Thông Tin</h3>
-        <p>Chúng tôi cam kết bảo mật thông tin khách hàng và không chia sẻ cho bên thứ ba.</p>
-        <div class="terms-updated">Cập nhật lần cuối: Tháng 11, 2026</div>
-      </div>
+      <div class="terms-content" id="termsContent"></div>
     </div>
   </section>
 </div>
 
-<!-- LIÊN HỆ -->
 <div class="page" id="page-contact">
   <section style="padding-top:80px">
     <div class="section-head"><h2>Liên Hệ Với Chúng Tôi</h2><p>Hỗ trợ 24/7 qua Discord</p></div>
@@ -428,9 +418,8 @@
   <a onclick="showPage('contact')" style="cursor:pointer; margin: 0 10px;">Liên Hệ</a>
 </footer>
 
-<!-- DỮ LIỆU INLINE -->
-<script type="application/json" id="partnersDataJSON">[]</script>
-<script type="application/json" id="productsDataJSON">[]</script>
+<!-- DỮ LIỆU INLINE (Sẽ được ghi đè khi Export) -->
+<script type="application/json" id="siteDataJSON">{}</script>
 
 <!-- ADMIN LOGIN -->
 <div class="admin-overlay" id="adminOverlay">
@@ -451,18 +440,16 @@
   </div>
   <div class="admin-body">
     
-    <!-- 🛍️ QUẢN LÝ SẢN PHẨM -->
     <div class="admin-group">
       <h4>🛍️ Quản Lý Sản Phẩm (Dịch Vụ)</h4>
-      <div class="admin-hint">💡 Thêm, sửa, xóa các gói dịch vụ. Tick "Nổi bật" để làm nổi bật thẻ. Tag: HOT, NEW.</div>
+      <div class="admin-hint">💡 Thêm, sửa, xóa các gói dịch vụ. Tick "Nổi bật" để làm nổi bật thẻ.</div>
       <div id="productsAdminList"></div>
       <button type="button" class="add-btn" id="addProductBtn">➕ Thêm Sản Phẩm Mới</button>
     </div>
 
-    <!-- 📦 QUẢN LÝ ĐƠN HÀNG -->
     <div class="admin-group">
       <h4>📦 Quản Lý Đơn Hàng</h4>
-      <div class="admin-hint">💡 Ghi chú lại các đơn khách đặt qua Discord để dễ theo dõi doanh thu.</div>
+      <div class="admin-hint">💡 Ghi chú lại các đơn khách đặt qua Discord để dễ theo dõi doanh thu. (Chỉ lưu trên máy bạn).</div>
       <button type="button" class="add-btn" id="addOrderBtn" style="background:rgba(212,175,55,.1); border-color:var(--gold); color:var(--gold); margin-bottom:12px;">➕ Thêm Đơn Hàng Mới</button>
       <div id="ordersAdminList"></div>
     </div>
@@ -482,18 +469,16 @@
       <div class="admin-field"><label>Thống kê 3</label><input type="text" data-input="stat3"></div>
     </div>
 
-    <!-- ĐỐI TÁC ĐỘNG -->
     <div class="admin-group">
       <h4>🤝 Quản Lý Đối Tác</h4>
       <div id="partnersAdminList"></div>
       <button type="button" class="add-btn" id="addPartnerBtn">➕ Thêm đối tác mới</button>
     </div>
 
-    <!-- ĐIỀU KHOẢN -->
     <div class="admin-group">
       <h4>📜 Nội Dung Điều Khoản</h4>
       <div class="admin-field">
-        <label>Nội dung trang Điều Khoản</label>
+        <label>Nội dung trang Điều Khoản (HTML)</label>
         <textarea data-input="termsContent" style="min-height: 200px;"></textarea>
       </div>
     </div>
@@ -504,8 +489,8 @@
     </div>
     <div class="admin-actions">
       <button class="btn btn-success" id="saveBtn">💾 Lưu Thay Đổi</button>
-      <button class="btn btn-primary" id="exportBtn">📥 Tải HTML Mới</button>
-      <button class="btn btn-danger" id="resetBtn">🗑 Reset Về Mặc Định</button>
+      <button class="btn btn-primary" id="exportBtn">📥 Tải HTML (Áp dụng cho mọi người)</button>
+      <button class="btn btn-danger" id="resetBtn">🗑 Reset Toàn Bộ</button>
     </div>
   </div>
 </div>
@@ -572,17 +557,9 @@
 })();
 </script>
 
-<!-- SCRIPT ADMIN + TOÀN BỘ DỮ LIỆU -->
+<!-- SCRIPT RENDERING (Chạy cho TẤT CẢ khách truy cập) -->
 <script>
 (function(){
-  const ADMIN_PASSWORD = 'luna2025';
-  const STORAGE_KEY = 'luna_club_config';
-  const ORDERS_KEY = 'luna_club_orders';
-  
-  let partnerItems = [];
-  let productItems = [];
-  let orders = [];
-
   const DEFAULT_PARTNERS = [
     { name: 'Gaming VN',       avatar: '🎮', link: 'https://discord.gg/tKm8J2jKkr' },
     { name: 'Diamond Shop',    avatar: '💎', link: 'https://discord.gg/tKm8J2jKkr' },
@@ -610,58 +587,25 @@
     <div class="terms-updated">Cập nhật lần cuối: Tháng 11, 2026</div>
   `;
 
-  const adminBtn = document.getElementById('adminBtn');
-  const adminOverlay = document.getElementById('adminOverlay');
-  const adminPanel = document.getElementById('adminPanel');
-  const adminClose = document.getElementById('adminClose');
-  const loginBtn = document.getElementById('loginBtn');
-  const adminPass = document.getElementById('adminPass');
-  const adminErr = document.getElementById('adminErr');
-  const saveBtn = document.getElementById('saveBtn');
-  const exportBtn = document.getElementById('exportBtn');
-  const resetBtn = document.getElementById('resetBtn');
-  const toast = document.getElementById('toast');
-  
-  const partnersGrid = document.getElementById('partnersGrid');
-  const homePartnersPreview = document.getElementById('homePartnersPreview');
-  const partnersAdminList = document.getElementById('partnersAdminList');
-  const addPartnerBtn = document.getElementById('addPartnerBtn');
-  const partnersDataJSON = document.getElementById('partnersDataJSON');
-
-  const pricingGrid = document.getElementById('pricingGrid');
-  const homePricingPreview = document.getElementById('homePricingPreview');
-  const productsAdminList = document.getElementById('productsAdminList');
-  const addProductBtn = document.getElementById('addProductBtn');
-  const productsDataJSON = document.getElementById('productsDataJSON');
-
-  const ordersAdminList = document.getElementById('ordersAdminList');
-  const addOrderBtn = document.getElementById('addOrderBtn');
-  const orderModal = document.getElementById('orderModal');
-  const closeOrderModal = document.getElementById('closeOrderModal');
-  const saveOrderBtn = document.getElementById('saveOrderBtn');
-
   function escapeHtml(s){
     return String(s == null ? '' : s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
   }
 
-  function formatMoney(amount){
-    return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(amount);
+  function renderAvatar(avatar){
+    if (!avatar || !String(avatar).trim()) return '🤝';
+    const a = String(avatar).trim();
+    if (/^https?:\/\//i.test(a)) return `<img src="${escapeHtml(a)}" alt="" loading="lazy" onerror="this.style.display='none';this.parentNode.textContent='🤝'">`;
+    return escapeHtml(a);
   }
 
-  function loadConfig(){
-    try { const raw = localStorage.getItem(STORAGE_KEY); return raw ? JSON.parse(raw) : {}; } catch(e) { return {}; }
-  }
-
-  function loadOrders(){
-    try { const raw = localStorage.getItem(ORDERS_KEY); return raw ? JSON.parse(raw) : []; } catch(e) { return []; }
-  }
-
-  // --- PRODUCTS LOGIC ---
-  function loadInitialProducts(){
-    const cfg = loadConfig();
-    if (Array.isArray(cfg.products) && cfg.products.length) return cfg.products;
-    try { const inline = JSON.parse(productsDataJSON.textContent); if (Array.isArray(inline) && inline.length) return inline; } catch(e) {}
-    return DEFAULT_PRODUCTS.slice();
+  function renderPartnerCard(p){
+    const inner = `
+      <div class="partner-avatar">${renderAvatar(p.avatar)}</div>
+      <div class="partner-name">${escapeHtml(p.name || 'Đối tác')}</div>
+      ${p.link ? '<div class="partner-visit">Truy cập →</div>' : ''}
+    `;
+    if (p.link && String(p.link).trim()) return `<a href="${escapeHtml(p.link)}" target="_blank" rel="noopener noreferrer" class="partner-card">${inner}</a>`;
+    return `<div class="partner-card">${inner}</div>`;
   }
 
   function renderProductCard(p, isHomePreview = false){
@@ -681,12 +625,139 @@
     return `<div class="card ${p.featured ? 'featured' : ''}" style="${isHomePreview ? 'text-align:center;' : ''}">${inner}</div>`;
   }
 
-  function renderProducts(items){
-    const valid = (items || []).filter(p => p && p.name && p.name.trim());
-    if (pricingGrid) pricingGrid.innerHTML = valid.length ? valid.map(p => renderProductCard(p, false)).join('') : '<div class="partners-empty">Chưa có sản phẩm.</div>';
-    if (homePricingPreview) homePricingPreview.innerHTML = valid.length ? valid.slice(0, 6).map(p => renderProductCard(p, true)).join('') : '<div class="partners-empty">Chưa có sản phẩm.</div>';
+  // Hàm khởi tạo chung: Đọc JSON trong file HTML
+  function initSite() {
+    let siteData = {};
+    try {
+      const inlineJSON = document.getElementById('siteDataJSON');
+      if (inlineJSON && inlineJSON.textContent) {
+        siteData = JSON.parse(inlineJSON.textContent);
+      }
+    } catch(e) { console.error("Lỗi đọc JSON", e); }
+
+    // Sử dụng dữ liệu từ file (dành cho khách) hoặc mặc định
+    const products = siteData.products || DEFAULT_PRODUCTS;
+    const partners = siteData.partners || DEFAULT_PARTNERS;
+    const terms = siteData.termsContent || DEFAULT_TERMS;
+
+    // Render giao diện
+    const validProducts = products.filter(p => p && p.name);
+    document.getElementById('pricingGrid').innerHTML = validProducts.length ? validProducts.map(p => renderProductCard(p, false)).join('') : '<div class="partners-empty">Chưa có sản phẩm.</div>';
+    document.getElementById('homePricingPreview').innerHTML = validProducts.length ? validProducts.slice(0, 6).map(p => renderProductCard(p, true)).join('') : '<div class="partners-empty">Chưa có sản phẩm.</div>';
+
+    const validPartners = partners.filter(p => p && p.name);
+    document.getElementById('partnersGrid').innerHTML = validPartners.length ? validPartners.map(renderPartnerCard).join('') : '<div class="partners-empty">Chưa có đối tác.</div>';
+    document.getElementById('homePartnersPreview').innerHTML = validPartners.length ? validPartners.slice(0, 3).map(renderPartnerCard).join('') : '<div class="partners-empty">Chưa có đối tác.</div>';
+
+    document.getElementById('termsContent').innerHTML = terms;
+
+    // Áp dụng các text config khác (nếu có)
+    if (siteData.config) {
+      Object.keys(siteData.config).forEach(key => {
+        if (key === 'discordLink') {
+          document.querySelectorAll('[data-link]').forEach(a => a.href = siteData.config[key]);
+          return;
+        }
+        if (key === 'logoLuna') {
+          document.querySelectorAll('[data-edit="logoLuna"], [data-edit="logoLunaM"]').forEach(el => el.textContent = siteData.config[key]);
+          return;
+        }
+        const els = document.querySelectorAll(`[data-edit="${key}"]`);
+        els.forEach(el => {
+          if (el.dataset.html === 'true') el.innerHTML = siteData.config[key];
+          else el.textContent = siteData.config[key];
+        });
+      });
+    }
   }
 
+  // Chạy render ngay lập tức
+  window.initSite = initSite;
+  initSite();
+})();
+</script>
+
+<!-- SCRIPT ADMIN (Chỉ hoạt động khi có nút Admin) -->
+<script>
+(function(){
+  // Nếu không tìm thấy nút Admin (tức là file đã Export), thì dừng script này lại
+  const adminBtn = document.getElementById('adminBtn');
+  if (!adminBtn) return;
+
+  const ADMIN_PASSWORD = 'luna2025';
+  const STORAGE_KEY = 'luna_club_config';
+  const ORDERS_KEY = 'luna_club_orders';
+  
+  let partnerItems = [];
+  let productItems = [];
+  let orders = [];
+
+  const adminOverlay = document.getElementById('adminOverlay');
+  const adminPanel = document.getElementById('adminPanel');
+  const adminClose = document.getElementById('adminClose');
+  const loginBtn = document.getElementById('loginBtn');
+  const adminPass = document.getElementById('adminPass');
+  const adminErr = document.getElementById('adminErr');
+  const saveBtn = document.getElementById('saveBtn');
+  const exportBtn = document.getElementById('exportBtn');
+  const resetBtn = document.getElementById('resetBtn');
+  const toast = document.getElementById('toast');
+  
+  const partnersAdminList = document.getElementById('partnersAdminList');
+  const addPartnerBtn = document.getElementById('addPartnerBtn');
+
+  const productsAdminList = document.getElementById('productsAdminList');
+  const addProductBtn = document.getElementById('addProductBtn');
+
+  const ordersAdminList = document.getElementById('ordersAdminList');
+  const addOrderBtn = document.getElementById('addOrderBtn');
+  const orderModal = document.getElementById('orderModal');
+  const closeOrderModal = document.getElementById('closeOrderModal');
+  const saveOrderBtn = document.getElementById('saveOrderBtn');
+
+  function escapeHtml(s){ return String(s == null ? '' : s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+  function formatMoney(amount){ return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(amount); }
+
+  function loadConfig(){
+    try { const raw = localStorage.getItem(STORAGE_KEY); return raw ? JSON.parse(raw) : {}; } catch(e) { return {}; }
+  }
+  function loadOrders(){
+    try { const raw = localStorage.getItem(ORDERS_KEY); return raw ? JSON.parse(raw) : []; } catch(e) { return []; }
+  }
+
+  // --- KHỞI TẠO DỮ LIỆU TỪ LOCALSTORAGE (Dành cho Admin đang sửa) ---
+  function loadInitialData() {
+    const cfg = loadConfig();
+    
+    // Nếu có lưu LocalStorage thì lấy, không thì lấy mặc định
+    productItems = (Array.isArray(cfg.products) && cfg.products.length) ? cfg.products : (window.DEFAULT_PRODUCTS || []);
+    partnerItems = (Array.isArray(cfg.partners) && cfg.partners.length) ? cfg.partners : (window.DEFAULT_PARTNERS || []);
+    orders = loadOrders();
+
+    // Render lại giao diện Admin
+    renderAdminProducts();
+    renderAdminPartners();
+    renderAdminOrders();
+    
+    // Nếu Admin đang có thay đổi chưa Export, render đè lên giao diện chính
+    if (Object.keys(cfg).length > 0) {
+      const siteData = {
+        products: productItems,
+        partners: partnerItems,
+        termsContent: cfg.termsContent,
+        config: cfg
+      };
+      document.getElementById('siteDataJSON').textContent = JSON.stringify(siteData);
+      window.initSite();
+    }
+    
+    // Fill form text
+    document.querySelectorAll('[data-input]').forEach(input => {
+      if (cfg[input.dataset.input] !== undefined) input.value = cfg[input.dataset.input];
+    });
+  }
+
+  // --- LOGIC SẢN PHẨM ---
   function renderAdminProducts(){
     if (!productsAdminList) return;
     productsAdminList.innerHTML = '';
@@ -748,9 +819,7 @@
       let val = e.target.value;
       if (field === 'features') val = val.split('\n').filter(f => f.trim() !== '');
       if (field === 'featured') val = val === 'true';
-      if (field === 'tag') {
-        productItems[+idx].tagClass = val === 'HOT' ? 'hot' : (val === 'NEW' ? 'new' : '');
-      }
+      if (field === 'tag') productItems[+idx].tagClass = val === 'HOT' ? 'hot' : (val === 'NEW' ? 'new' : '');
       productItems[+idx][field] = val;
     }
   });
@@ -758,9 +827,8 @@
   productsAdminList.addEventListener('click', (e) => {
     const removeBtn = e.target.closest('[data-remove]');
     if (removeBtn) {
-      const idx = +removeBtn.dataset.remove;
-      if (!confirm(`Xóa sản phẩm "${productItems[idx].name}"?`)) return;
-      productItems.splice(idx, 1);
+      if (!confirm(`Xóa sản phẩm "${productItems[+removeBtn.dataset.remove].name}"?`)) return;
+      productItems.splice(+removeBtn.dataset.remove, 1);
       renderAdminProducts();
       return;
     }
@@ -778,37 +846,7 @@
     renderAdminProducts();
   });
 
-  // --- PARTNERS LOGIC ---
-  function loadInitialPartners(){
-    const cfg = loadConfig();
-    if (Array.isArray(cfg.partners) && cfg.partners.length) return cfg.partners;
-    try { const inline = JSON.parse(partnersDataJSON.textContent); if (Array.isArray(inline) && inline.length) return inline; } catch(e) {}
-    return DEFAULT_PARTNERS.slice();
-  }
-
-  function renderAvatar(avatar){
-    if (!avatar || !String(avatar).trim()) return '🤝';
-    const a = String(avatar).trim();
-    if (/^https?:\/\//i.test(a)) return `<img src="${escapeHtml(a)}" alt="" loading="lazy" onerror="this.style.display='none';this.parentNode.textContent='🤝'">`;
-    return escapeHtml(a);
-  }
-
-  function renderPartnerCard(p){
-    const inner = `
-      <div class="partner-avatar">${renderAvatar(p.avatar)}</div>
-      <div class="partner-name">${escapeHtml(p.name || 'Đối tác')}</div>
-      ${p.link ? '<div class="partner-visit">Truy cập →</div>' : ''}
-    `;
-    if (p.link && String(p.link).trim()) return `<a href="${escapeHtml(p.link)}" target="_blank" rel="noopener noreferrer" class="partner-card">${inner}</a>`;
-    return `<div class="partner-card">${inner}</div>`;
-  }
-
-  function renderPartners(items){
-    const valid = (items || []).filter(p => p && p.name && p.name.trim());
-    if (partnersGrid) partnersGrid.innerHTML = valid.length ? valid.map(renderPartnerCard).join('') : '<div class="partners-empty">Chưa có đối tác.</div>';
-    if (homePartnersPreview) homePartnersPreview.innerHTML = valid.length ? valid.slice(0, 3).map(renderPartnerCard).join('') : '<div class="partners-empty">Chưa có đối tác.</div>';
-  }
-
+  // --- LOGIC ĐỐI TÁC ---
   function renderAdminPartners(){
     if (!partnersAdminList) return;
     partnersAdminList.innerHTML = '';
@@ -843,9 +881,8 @@
   partnersAdminList.addEventListener('click', (e) => {
     const removeBtn = e.target.closest('[data-remove]');
     if (removeBtn) {
-      const idx = +removeBtn.dataset.remove;
       if (!confirm('Xóa đối tác này?')) return;
-      partnerItems.splice(idx, 1);
+      partnerItems.splice(+removeBtn.dataset.remove, 1);
       renderAdminPartners();
       return;
     }
@@ -863,7 +900,7 @@
     renderAdminPartners();
   });
 
-  // --- ORDERS LOGIC ---
+  // --- LOGIC ĐƠN HÀNG ---
   function renderAdminOrders(){
     if (!ordersAdminList) return;
     ordersAdminList.innerHTML = '';
@@ -876,11 +913,8 @@
     sortedOrders.forEach(o => {
       const box = document.createElement('div');
       box.className = `order-card ${o.status}`;
+      let statusText = o.status === 'completed' ? '✅ Hoàn thành' : (o.status === 'cancelled' ? '❌ Đã hủy' : 'Chờ xử lý');
       
-      let statusText = 'Chờ xử lý';
-      if (o.status === 'completed') statusText = '✅ Hoàn thành';
-      if (o.status === 'cancelled') statusText = '❌ Đã hủy';
-
       box.innerHTML = `
         <div class="order-header">
           <span>#${o.id} - ${escapeHtml(o.name)}</span>
@@ -941,88 +975,70 @@
 
     if (!name || !service) { alert('Vui lòng nhập Tên khách và Dịch vụ!'); return; }
 
-    const newOrder = {
+    orders.push({
       id: Date.now(), name, discord, service, price, note, status: 'pending',
       date: new Date().toLocaleDateString('vi-VN') + ' ' + new Date().toLocaleTimeString('vi-VN')
-    };
-
-    orders.push(newOrder);
+    });
     localStorage.setItem(ORDERS_KEY, JSON.stringify(orders));
     renderAdminOrders();
     orderModal.classList.remove('active');
     showToast('✅ Đã thêm đơn hàng!');
   });
 
-  // --- FORM & EXPORT LOGIC ---
+  // --- CÁC HÀM XỬ LÝ CHUNG ---
   function readForm(){
     const config = {};
     document.querySelectorAll('[data-input]').forEach(input => {
       const val = input.value.trim();
       if (val) config[input.dataset.input] = val;
     });
-    config.partners = partnerItems.filter(p => p && p.name && p.name.trim());
-    config.products = productItems.filter(p => p && p.name && p.name.trim());
-    return config;
+    return { config, products: productItems, partners: partnerItems };
   }
 
-  function applyConfig(config){
-    Object.keys(config).forEach(key => {
-      if (key === 'discordLink' || key === 'partners' || key === 'products' || key === 'termsContent') return;
-      if (key === 'logoLuna') { document.querySelectorAll('[data-edit="logoLuna"], [data-edit="logoLunaM"]').forEach(el => el.textContent = config[key]); return; }
-      const els = document.querySelectorAll(`[data-edit="${key}"]`);
-      els.forEach(el => {
-        if (el.dataset.html === 'true') el.innerHTML = config[key];
-        else el.textContent = config[key];
-      });
-    });
+  function saveConfig(isExporting = false){
+    const { config, products, partners } = readForm();
     
-    const termsEl = document.getElementById('termsContent');
-    if (termsEl) termsEl.innerHTML = config.termsContent || DEFAULT_TERMS;
+    // Lưu bản nháp vào máy Admin
+    const draft = { ...config, products, partners };
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(draft));
 
-    if (config.discordLink) document.querySelectorAll('[data-link]').forEach(a => a.href = config.discordLink);
+    // Chuẩn bị data để nhúng vào HTML (dành cho khách)
+    const siteData = {
+      products: products.filter(p => p.name.trim()),
+      partners: partners.filter(p => p.name.trim()),
+      termsContent: config.termsContent || "",
+      config: config
+    };
     
-    if (Array.isArray(config.partners)) {
-      partnerItems = config.partners.slice();
-      renderPartners(partnerItems);
-      renderAdminPartners();
-    }
-    if (Array.isArray(config.products)) {
-      productItems = config.products.slice();
-      renderProducts(productItems);
-      renderAdminProducts();
-    }
-  }
+    // Cập nhật DOM ngay lập tức để Admin xem trước
+    document.getElementById('siteDataJSON').textContent = JSON.stringify(siteData);
+    window.initSite();
 
-  function fillForm(config){
-    document.querySelectorAll('[data-input]').forEach(input => {
-      if (config[input.dataset.input] !== undefined) input.value = config[input.dataset.input];
-    });
-    if (!config.termsContent) {
-      document.querySelector('[data-input="termsContent"]').value = DEFAULT_TERMS.trim();
-    }
-    renderAdminPartners();
-    renderAdminProducts();
-  }
-
-  function saveConfig(){
-    const config = readForm();
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(config));
-    partnersDataJSON.textContent = JSON.stringify(config.partners || []);
-    productsDataJSON.textContent = JSON.stringify(config.products || []);
-    applyConfig(config);
-    showToast('✅ Đã lưu thay đổi!');
+    if (!isExporting) showToast('✅ Đã lưu thay đổi (Chỉ xem trước)!');
+    return siteData;
   }
 
   function exportHTML(){
-    partnersDataJSON.textContent = JSON.stringify(partnerItems.filter(p => p.name && p.name.trim()));
-    productsDataJSON.textContent = JSON.stringify(productItems.filter(p => p.name && p.name.trim()));
+    // 1. Lưu config hiện tại vào JSON
+    const siteData = saveConfig(true);
+    
+    // 2. Clone toàn bộ DOM
     const clone = document.documentElement.cloneNode(true);
     
-    clone.querySelectorAll('.admin-panel, .admin-overlay, .admin-btn, .admin-toast, .mobile-menu').forEach(el => el.remove());
-    const scripts = clone.querySelectorAll('script');
-    scripts.forEach((s, idx) => { if (idx >= 1) s.remove(); });
-    clone.querySelectorAll('[data-input], [data-partner], [data-product]').forEach(el => { el.removeAttribute('data-input'); el.removeAttribute('data-partner'); el.removeAttribute('data-product'); });
+    // 3. XÓA TẤT CẢ CÁC THÀNH PHẦN ADMIN khỏi bản Clone
+    const toRemove = ['.admin-panel', '.admin-overlay', '.admin-btn', '.admin-toast', '.mobile-menu'];
+    clone.querySelectorAll(toRemove.join(',')).forEach(el => el.remove());
     
+    // 4. Xóa Script Admin (Script cuối cùng)
+    const scripts = clone.querySelectorAll('script');
+    if (scripts.length > 0) {
+      scripts[scripts.length - 1].remove(); 
+    }
+    
+    // 5. Ghi đè Data JSON mới nhất
+    clone.querySelector('#siteDataJSON').textContent = JSON.stringify(siteData);
+    
+    // 6. Tạo file tải xuống
     const dateStr = `${new Date().getDate()}-${new Date().getMonth()+1}-${new Date().getFullYear()}`;
     const html = '<!DOCTYPE html>\n' + clone.outerHTML;
     const blob = new Blob([html], { type: 'text/html;charset=utf-8' });
@@ -1031,11 +1047,11 @@
     a.href = url; a.download = `index-luna-${dateStr}.html`;
     document.body.appendChild(a); a.click(); document.body.removeChild(a);
     URL.revokeObjectURL(url);
-    showToast('📥 Đã tải file HTML mới!');
+    showToast('📥 Đã tải HTML mới! Hãy up lên host.');
   }
 
   function resetConfig(){
-    if (!confirm('Reset toàn bộ web về mặc định? Thao tác này sẽ xóa cả đơn hàng và sản phẩm!')) return;
+    if (!confirm('Reset toàn bộ web về mặc định? (Sẽ mất đơn hàng và sản phẩm đã sửa)')) return;
     localStorage.removeItem(STORAGE_KEY);
     localStorage.removeItem(ORDERS_KEY);
     location.reload();
@@ -1046,6 +1062,7 @@
     setTimeout(() => toast.classList.remove('show'), 2500);
   }
 
+  // Sự kiện UI
   adminBtn.addEventListener('click', () => { adminOverlay.classList.add('active'); adminPass.value = ''; adminErr.style.display = 'none'; setTimeout(() => adminPass.focus(), 100); });
   adminOverlay.addEventListener('click', (e) => { if (e.target === adminOverlay) adminOverlay.classList.remove('active'); });
   
@@ -1053,35 +1070,19 @@
     if (adminPass.value === ADMIN_PASSWORD) { 
       adminOverlay.classList.remove('active'); 
       adminPanel.classList.add('active'); 
-      fillForm(loadConfig()); 
-    }
-    else { adminErr.style.display = 'block'; adminPass.value = ''; adminPass.focus(); }
+      loadInitialData();
+    } else { adminErr.style.display = 'block'; adminPass.value = ''; adminPass.focus(); }
   });
   
   adminPass.addEventListener('keydown', (e) => { if (e.key === 'Enter') loginBtn.click(); });
   adminClose.addEventListener('click', () => adminPanel.classList.remove('active'));
   
-  saveBtn.addEventListener('click', saveConfig);
+  saveBtn.addEventListener('click', () => saveConfig(false));
   exportBtn.addEventListener('click', exportHTML);
   resetBtn.addEventListener('click', resetConfig);
-
-  // Init
-  productItems = loadInitialProducts();
-  partnerItems = loadInitialPartners();
-  orders = loadOrders();
-  
-  renderProducts(productItems);
-  renderPartners(partnerItems);
-  renderAdminProducts();
-  renderAdminPartners();
-  renderAdminOrders();
-  
-  const initialConfig = loadConfig();
-  if (Object.keys(initialConfig).length > 0) applyConfig(initialConfig);
-  else document.getElementById('termsContent').innerHTML = DEFAULT_TERMS;
 
 })();
 </script>
 
 </body>
-  </html>
+                                                                                 </html>
